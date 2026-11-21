@@ -50,10 +50,10 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://thorwhalen.github.io/aw/"
-Repository = "https://github.com/thorwhalen/aw"
-Issues = "https://github.com/thorwhalen/aw/issues"
-Changelog = "https://github.com/thorwhalen/aw/blob/main/CHANGELOG.md"
+Homepage = "https://addaix.github.io/aw/"
+Repository = "https://github.com/addaix/aw"
+Issues = "https://github.com/addaix/aw/issues"
+Changelog = "https://github.com/addaix/aw/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 ir = [
