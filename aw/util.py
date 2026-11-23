@@ -323,21 +323,20 @@ def create_openai_chat(model: str = "gpt-4", **default_kwargs) -> Callable[[str]
 
 
 def create_oa_chat() -> Callable[[str], str]:
-    """Create a chat function using the oa package.
+    """Create a chat function through :func:`aw.llm.default_chat` (``aix``, else ``oa``).
+
+    The name is kept for compatibility; generation is routed through ``aix``.
 
     Returns:
         A callable that takes a prompt and returns a response
 
     Example:
-        >>> chat = create_oa_chat()
-        >>> response = chat("Hello!")
+        >>> chat = create_oa_chat()  # doctest: +SKIP
+        >>> response = chat("Hello!")  # doctest: +SKIP
     """
-    try:
-        from oa import chat as oa_chat
+    from aw.llm import default_chat
 
-        return oa_chat
-    except ImportError:
-        raise ImportError("oa package not available. Install with: pip install oa")
+    return default_chat()
 
 
 def default_llm_factory(model: Union[str, Callable] = "gpt-4") -> Callable[[str], str]:
@@ -356,7 +355,7 @@ def default_llm_factory(model: Union[str, Callable] = "gpt-4") -> Callable[[str]
     if callable(model):
         return model
 
-    # Try to use oa package first (as specified in requirements)
+    # Try the fleet facade first (aix, else oa)
     try:
         return create_oa_chat()
     except ImportError:

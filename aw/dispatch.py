@@ -82,16 +82,16 @@ def ir_search(
 
 
 def _default_ask(prompt: str) -> str:  # pragma: no cover - needs a live model
-    from oa import chat  # the LLM facade aw already depends on
+    from aw.llm import default_chat
 
-    return str(chat(prompt))
+    return str(default_chat()(prompt))
 
 
 @dataclass
 class Adjudicator:
     """The escalation layer: an LLM picks one of the top-k candidates for the raw request, or none.
 
-    ``ask(prompt) -> str`` is the model call (default: ``oa.chat``); ``describe(name)``
+    ``ask(prompt) -> str`` is the model call (default: ``aix.chat``, via :mod:`aw.llm`); ``describe(name)``
     returns a candidate's description so the model sees cards, not bare names. The model
     sees the user's words verbatim: a summary is a lossy channel (opsward ADR 0011 §3).
 
