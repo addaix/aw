@@ -1,4 +1,4 @@
-> built 2026-10-20 07:05 UTC from d4269a9 (main) · aw 0.1.9. Details: build_info.json
+> built 2026-11-23 02:47 UTC from e9956db (main) · aw 0.1.10. Details: build_info.json
 
 # index.html.md
 
@@ -8,22 +8,10 @@
 
 An AI agent package for data preparation with a focus on modular, extensible workflows that follow best practices from modern agentic architectures.
 
-## Features
-
-- **AgenticStep Protocol**: Build modular agents that follow a consistent interface
-- **ReAct Pattern**: Reason-Act-Observe loops with automatic retry logic
-- **Three Validation Flavors**: Schema-based, info-dict based, and functional validation
-- **Code Execution**: Safe defaults with extensibility for robust backends (LangChain, DSPy)
-- **Loading Agent**: Automatically loads data from various sources into pandas DataFrames
-- **Preparation Agent**: Transforms data to meet target requirements
-- **Cosmograph Support**: Specialized validators for cosmograph visualization
-- **Orchestration**: Chain multiple steps together with context management
-- **Human-in-Loop**: Optional human approval at any step
-
 ## Installation
 
 ```bash
-pip install -e .
+pip install aw
 ```
 
 ### Optional Dependencies
@@ -101,6 +89,18 @@ if metadata["success"]:
 else:
     print(f"Failed at: {metadata.get('failed_at')}")
 ```
+
+## Features
+
+- **AgenticStep Protocol**: Build modular agents that follow a consistent interface
+- **ReAct Pattern**: Reason-Act-Observe loops with automatic retry logic
+- **Three Validation Flavors**: Schema-based, info-dict based, and functional validation
+- **Code Execution**: Safe defaults with extensibility for robust backends (LangChain, DSPy)
+- **Loading Agent**: Automatically loads data from various sources into pandas DataFrames
+- **Preparation Agent**: Transforms data to meet target requirements
+- **Cosmograph Support**: Specialized validators for cosmograph visualization
+- **Orchestration**: Chain multiple steps together with context management
+- **Human-in-Loop**: Optional human approval at any step
 
 ## Architecture
 
@@ -3947,40 +3947,38 @@ Create a validator from a schema (Pydantic, JSON Schema, etc.).
 
 # About this build
 
-This documentation was built on **2026-10-20 07:05 UTC** from commit <a href="https://github.com/thorwhalen/aw/commit/d4269a9bf0f807ba48852b05d986f0939ec48ccf"><code>d4269a9</code></a> on branch <code>main</code>, for **aw 0.1.9** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-11-23 02:47 UTC** from commit <a href="https://github.com/addaix/aw/commit/e9956dbd3e6b02e78280b81e5a2f00d6b946b73f"><code>e9956db</code></a> on branch <code>main</code>, for **aw 0.1.10** (from <code>pyproject.toml</code>).
 
-#### WARNING
-The documentation and the package may be misaligned:
-
-- The documented version (0.1.9) is ahead of the latest release on PyPI (0.1.7): these docs describe unreleased code.
+#### NOTE
+Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
 
 ## Source
 
-|                     |                                                                                                                                                      |
-|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/thorwhalen/aw/commit/d4269a9bf0f807ba48852b05d986f0939ec48ccf"><code>d4269a9bf0f807ba48852b05d986f0939ec48ccf</code></a> |
-| Branch              | <code>main</code>                                                                                                                                    |
-| Tags at this commit | <code>0.1.9</code>                                                                                                                                   |
-| Working tree        | clean                                                                                                                                                |
-| Remote              | <code>https://github.com/thorwhalen/aw</code>                                                                                                        |
+|                     |                                                                                                                                                  |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| Commit              | <a href="https://github.com/addaix/aw/commit/e9956dbd3e6b02e78280b81e5a2f00d6b946b73f"><code>e9956dbd3e6b02e78280b81e5a2f00d6b946b73f</code></a> |
+| Branch              | <code>main</code>                                                                                                                                |
+| Tags at this commit | <code>0.1.10</code>                                                                                                                              |
+| Working tree        | clean                                                                                                                                            |
+| Remote              | <code>https://github.com/addaix/aw</code>                                                                                                        |
 
 ## Continuous integration
 
 |              |                                                                                            |
 |--------------|--------------------------------------------------------------------------------------------|
-| Repository   | <code>thorwhalen/aw</code>                                                                 |
-| Run          | <a href="https://github.com/thorwhalen/aw/actions/runs/39384068283">39384068283</a>        |
+| Repository   | <code>addaix/aw</code>                                                                     |
+| Run          | <a href="https://github.com/addaix/aw/actions/runs/45101996535">45101996535</a>            |
 | Ref          | <code>refs/heads/main</code>                                                               |
-| Event commit | <code>717fca29fc0e212fa54600729a7f37ce77acbdc9</code> (in the history of the built commit) |
+| Event commit | <code>9000f9fa4b08b09c83b2060e25cc5029d5de8a5b</code> (in the history of the built commit) |
 
 ## Tools
 
 |          |         |
 |----------|---------|
-| epythet  | 0.2.18  |
+| epythet  | 0.2.23  |
 | Sphinx   | 9.1.1   |
 | docutils | 0.22.4  |
-| Python   | 3.12.15 |
+| Python   | 3.12.16 |
 
 ## Configuration as resolved
 
@@ -3996,14 +3994,14 @@ The documentation and the package may be misaligned:
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/aw/0.1.7/">0.1.7</a>, older than the documented version (0.1.9).
+Latest release: <a href="https://pypi.org/project/aw/0.1.10/">0.1.10</a>, the same as the documented version.
 
 ## Reproduce
 
 ```bash
-git clone https://github.com/thorwhalen/aw && cd aw
-git checkout d4269a9bf0f807ba48852b05d986f0939ec48ccf
-pip install "epythet==0.2.18"
+git clone https://github.com/addaix/aw && cd aw
+git checkout e9956dbd3e6b02e78280b81e5a2f00d6b946b73f
+pip install "epythet==0.2.23"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
 

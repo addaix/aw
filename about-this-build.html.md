@@ -2,40 +2,38 @@
 
 # About this build
 
-This documentation was built on **2026-10-20 07:05 UTC** from commit <a href="https://github.com/thorwhalen/aw/commit/d4269a9bf0f807ba48852b05d986f0939ec48ccf"><code>d4269a9</code></a> on branch <code>main</code>, for **aw 0.1.9** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-11-23 02:47 UTC** from commit <a href="https://github.com/addaix/aw/commit/e9956dbd3e6b02e78280b81e5a2f00d6b946b73f"><code>e9956db</code></a> on branch <code>main</code>, for **aw 0.1.10** (from <code>pyproject.toml</code>).
 
-#### WARNING
-The documentation and the package may be misaligned:
-
-- The documented version (0.1.9) is ahead of the latest release on PyPI (0.1.7): these docs describe unreleased code.
+#### NOTE
+Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
 
 ## Source
 
-|                     |                                                                                                                                                      |
-|---------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/thorwhalen/aw/commit/d4269a9bf0f807ba48852b05d986f0939ec48ccf"><code>d4269a9bf0f807ba48852b05d986f0939ec48ccf</code></a> |
-| Branch              | <code>main</code>                                                                                                                                    |
-| Tags at this commit | <code>0.1.9</code>                                                                                                                                   |
-| Working tree        | clean                                                                                                                                                |
-| Remote              | <code>https://github.com/thorwhalen/aw</code>                                                                                                        |
+|                     |                                                                                                                                                  |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| Commit              | <a href="https://github.com/addaix/aw/commit/e9956dbd3e6b02e78280b81e5a2f00d6b946b73f"><code>e9956dbd3e6b02e78280b81e5a2f00d6b946b73f</code></a> |
+| Branch              | <code>main</code>                                                                                                                                |
+| Tags at this commit | <code>0.1.10</code>                                                                                                                              |
+| Working tree        | clean                                                                                                                                            |
+| Remote              | <code>https://github.com/addaix/aw</code>                                                                                                        |
 
 ## Continuous integration
 
 |              |                                                                                            |
 |--------------|--------------------------------------------------------------------------------------------|
-| Repository   | <code>thorwhalen/aw</code>                                                                 |
-| Run          | <a href="https://github.com/thorwhalen/aw/actions/runs/39384068283">39384068283</a>        |
+| Repository   | <code>addaix/aw</code>                                                                     |
+| Run          | <a href="https://github.com/addaix/aw/actions/runs/45101996535">45101996535</a>            |
 | Ref          | <code>refs/heads/main</code>                                                               |
-| Event commit | <code>717fca29fc0e212fa54600729a7f37ce77acbdc9</code> (in the history of the built commit) |
+| Event commit | <code>9000f9fa4b08b09c83b2060e25cc5029d5de8a5b</code> (in the history of the built commit) |
 
 ## Tools
 
 |          |         |
 |----------|---------|
-| epythet  | 0.2.18  |
+| epythet  | 0.2.23  |
 | Sphinx   | 9.1.1   |
 | docutils | 0.22.4  |
-| Python   | 3.12.15 |
+| Python   | 3.12.16 |
 
 ## Configuration as resolved
 
@@ -51,14 +49,14 @@ The documentation and the package may be misaligned:
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/aw/0.1.7/">0.1.7</a>, older than the documented version (0.1.9).
+Latest release: <a href="https://pypi.org/project/aw/0.1.10/">0.1.10</a>, the same as the documented version.
 
 ## Reproduce
 
 ```bash
-git clone https://github.com/thorwhalen/aw && cd aw
-git checkout d4269a9bf0f807ba48852b05d986f0939ec48ccf
-pip install "epythet==0.2.18"
+git clone https://github.com/addaix/aw && cd aw
+git checkout e9956dbd3e6b02e78280b81e5a2f00d6b946b73f
+pip install "epythet==0.2.23"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
 

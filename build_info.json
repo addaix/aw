@@ -1,41 +1,41 @@
 {
   "schema_version": 1,
-  "built_at": "2026-10-20T07:05:51Z",
+  "built_at": "2026-11-23T02:47:43Z",
   "package": {
     "name": "aw",
-    "version": "0.1.9",
+    "version": "0.1.10",
     "display_name": "aw",
     "source": "pyproject.toml"
   },
   "git": {
     "available": true,
-    "commit": "d4269a9bf0f807ba48852b05d986f0939ec48ccf",
-    "short_commit": "d4269a9",
+    "commit": "e9956dbd3e6b02e78280b81e5a2f00d6b946b73f",
+    "short_commit": "e9956db",
     "branch": "main",
     "tags": [
-      "0.1.9"
+      "0.1.10"
     ],
     "dirty": false,
-    "remote_url": "https://github.com/thorwhalen/aw",
-    "commit_url": "https://github.com/thorwhalen/aw/commit/d4269a9bf0f807ba48852b05d986f0939ec48ccf",
+    "remote_url": "https://github.com/addaix/aw",
+    "commit_url": "https://github.com/addaix/aw/commit/e9956dbd3e6b02e78280b81e5a2f00d6b946b73f",
     "error": null
   },
   "ci": {
     "provider": "github",
-    "repository": "thorwhalen/aw",
-    "sha": "717fca29fc0e212fa54600729a7f37ce77acbdc9",
+    "repository": "addaix/aw",
+    "sha": "9000f9fa4b08b09c83b2060e25cc5029d5de8a5b",
     "sha_in_history": true,
     "ref": "refs/heads/main",
     "ref_name": "main",
-    "run_id": "39384068283",
-    "run_url": "https://github.com/thorwhalen/aw/actions/runs/39384068283",
+    "run_id": "45101996535",
+    "run_url": "https://github.com/addaix/aw/actions/runs/45101996535",
     "server_url": "https://github.com"
   },
   "tools": {
-    "epythet": "0.2.18",
+    "epythet": "0.2.23",
     "sphinx": "9.1.1",
     "docutils": "0.22.4",
-    "python": "3.12.15"
+    "python": "3.12.16"
   },
   "config": {
     "theme": "auto",
@@ -62,16 +62,14 @@
   },
   "pypi": {
     "checked": true,
-    "latest": "0.1.7",
-    "relation": "ahead",
+    "latest": "0.1.10",
+    "relation": "same",
     "error": null
   },
-  "reproduce": "git clone https://github.com/thorwhalen/aw && cd aw\ngit checkout d4269a9bf0f807ba48852b05d986f0939ec48ccf\npip install \"epythet==0.2.18\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
+  "reproduce": "git clone https://github.com/addaix/aw && cd aw\ngit checkout e9956dbd3e6b02e78280b81e5a2f00d6b946b73f\npip install \"epythet==0.2.23\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
   "warnings": [],
   "alignment": {
-    "aligned": false,
-    "notes": [
-      "The documented version (0.1.9) is ahead of the latest release on PyPI (0.1.7): these docs describe unreleased code."
-    ]
+    "aligned": true,
+    "notes": []
   }
 }

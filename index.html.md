@@ -4,22 +4,10 @@
 
 An AI agent package for data preparation with a focus on modular, extensible workflows that follow best practices from modern agentic architectures.
 
-## Features
-
-- **AgenticStep Protocol**: Build modular agents that follow a consistent interface
-- **ReAct Pattern**: Reason-Act-Observe loops with automatic retry logic
-- **Three Validation Flavors**: Schema-based, info-dict based, and functional validation
-- **Code Execution**: Safe defaults with extensibility for robust backends (LangChain, DSPy)
-- **Loading Agent**: Automatically loads data from various sources into pandas DataFrames
-- **Preparation Agent**: Transforms data to meet target requirements
-- **Cosmograph Support**: Specialized validators for cosmograph visualization
-- **Orchestration**: Chain multiple steps together with context management
-- **Human-in-Loop**: Optional human approval at any step
-
 ## Installation
 
 ```bash
-pip install -e .
+pip install aw
 ```
 
 ### Optional Dependencies
@@ -97,6 +85,18 @@ if metadata["success"]:
 else:
     print(f"Failed at: {metadata.get('failed_at')}")
 ```
+
+## Features
+
+- **AgenticStep Protocol**: Build modular agents that follow a consistent interface
+- **ReAct Pattern**: Reason-Act-Observe loops with automatic retry logic
+- **Three Validation Flavors**: Schema-based, info-dict based, and functional validation
+- **Code Execution**: Safe defaults with extensibility for robust backends (LangChain, DSPy)
+- **Loading Agent**: Automatically loads data from various sources into pandas DataFrames
+- **Preparation Agent**: Transforms data to meet target requirements
+- **Cosmograph Support**: Specialized validators for cosmograph visualization
+- **Orchestration**: Chain multiple steps together with context management
+- **Human-in-Loop**: Optional human approval at any step
 
 ## Architecture
 
