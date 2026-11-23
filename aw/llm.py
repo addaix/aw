@@ -14,7 +14,9 @@ from typing import Any, Callable
 
 __all__ = ["default_chat", "default_json_function_maker"]
 
-_MISSING = "no LLM facade available: aw needs aix (or, as a fallback, oa: the 'llm' extra)"
+_MISSING = (
+    "no LLM facade available: aw needs aix (or, as a fallback, oa: the 'llm' extra)"
+)
 
 
 def default_chat() -> Callable[..., str]:
