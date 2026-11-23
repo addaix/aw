@@ -296,6 +296,21 @@
 
 
 
+<span class="k">def</span><span class="w"> </span><span class="nf">_json_schema_of</span><span class="p">(</span><span class="n">schema</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""The JSON schema in ``schema``: an OpenAI-style ``{"name", "schema": {...}}``</span>
+<span class="sd">    wrapper is unwrapped; a JSON-schema dict, or a Pydantic model, is returned as is</span>
+<span class="sd">    (addaix/aw#14).</span>
+
+<span class="sd">    &gt;&gt;&gt; _json_schema_of({"name": "f", "schema": {"type": "object"}})</span>
+<span class="sd">    {'type': 'object'}</span>
+<span class="sd">    &gt;&gt;&gt; _json_schema_of({"type": "object"})</span>
+<span class="sd">    {'type': 'object'}</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">schema</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"schema"</span><span class="p">),</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">schema</span><span class="p">[</span><span class="s2">"schema"</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">schema</span>
+
+
 <div class="viewcode-block" id="default_json_function_maker">
 <a class="viewcode-back" href="../../_autosummary/aw.llm.html#aw.llm.default_json_function_maker">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">default_json_function_maker</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
@@ -304,10 +319,12 @@
 <span class="sd">    Raises ``ImportError`` when neither is installed.</span>
 <span class="sd">    """</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="kn">from</span><span class="w"> </span><span class="nn">aix</span><span class="w"> </span><span class="kn">import</span> <span class="n">prompt_to_json</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">aix</span><span class="w"> </span><span class="kn">import</span> <span class="n">prompt_func</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">maker</span><span class="p">(</span><span class="n">template</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">json_schema</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="n">prompt_to_json</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">json_schema</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">prompt_func</span><span class="p">(</span>
+                <span class="n">template</span><span class="p">,</span> <span class="n">response_schema</span><span class="o">=</span><span class="n">_json_schema_of</span><span class="p">(</span><span class="n">json_schema</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">maker</span>
     <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
@@ -347,7 +364,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=932d0dab"></script>
+</div><script src="../../_static/documentation_options.js?v=b39c9740"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

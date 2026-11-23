@@ -2,7 +2,7 @@
 
 # About this build
 
-This documentation was built on **2026-11-23 07:03 UTC** from commit <a href="https://github.com/addaix/aw/commit/837353717c8925bcc2d7b7e1d7fde82dc2ce229a"><code>8373537</code></a> on branch <code>main</code>, for **aw 0.1.11** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-11-23 23:16 UTC** from commit <a href="https://github.com/addaix/aw/commit/d547569f26662741719c1a49ba1266648578d336"><code>d547569</code></a> on branch <code>main</code>, for **aw 0.1.12** (from <code>pyproject.toml</code>).
 
 #### NOTE
 Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
@@ -11,9 +11,9 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 
 |                     |                                                                                                                                                  |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/addaix/aw/commit/837353717c8925bcc2d7b7e1d7fde82dc2ce229a"><code>837353717c8925bcc2d7b7e1d7fde82dc2ce229a</code></a> |
+| Commit              | <a href="https://github.com/addaix/aw/commit/d547569f26662741719c1a49ba1266648578d336"><code>d547569f26662741719c1a49ba1266648578d336</code></a> |
 | Branch              | <code>main</code>                                                                                                                                |
-| Tags at this commit | <code>0.1.11</code>                                                                                                                              |
+| Tags at this commit | <code>0.1.12</code>                                                                                                                              |
 | Working tree        | clean                                                                                                                                            |
 | Remote              | <code>https://github.com/addaix/aw</code>                                                                                                        |
 
@@ -22,15 +22,15 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 |              |                                                                                            |
 |--------------|--------------------------------------------------------------------------------------------|
 | Repository   | <code>addaix/aw</code>                                                                     |
-| Run          | <a href="https://github.com/addaix/aw/actions/runs/45128115937">45128115937</a>            |
+| Run          | <a href="https://github.com/addaix/aw/actions/runs/45287007204">45287007204</a>            |
 | Ref          | <code>refs/heads/main</code>                                                               |
-| Event commit | <code>efc2ec77cf941881386875f25a15f76c5c854a33</code> (in the history of the built commit) |
+| Event commit | <code>b3dcde60365209254f3f67eacd379d47190ebed0</code> (in the history of the built commit) |
 
 ## Tools
 
 |          |         |
 |----------|---------|
-| epythet  | 0.2.23  |
+| epythet  | 0.2.25  |
 | Sphinx   | 9.1.1   |
 | docutils | 0.22.4  |
 | Python   | 3.12.16 |
@@ -49,14 +49,14 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/aw/0.1.11/">0.1.11</a>, the same as the documented version.
+Latest release: <a href="https://pypi.org/project/aw/0.1.12/">0.1.12</a>, the same as the documented version.
 
 ## Reproduce
 
 ```bash
 git clone https://github.com/addaix/aw && cd aw
-git checkout 837353717c8925bcc2d7b7e1d7fde82dc2ce229a
-pip install "epythet==0.2.23"
+git checkout d547569f26662741719c1a49ba1266648578d336
+pip install "epythet==0.2.25"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
 
