@@ -46,7 +46,7 @@ dependencies = [
     "pandas",
     "config2py",
     "pydantic",
-    "aix",
+    "aix>=0.0.65",  # 0.0.65: escaped {{braces}} survive (addaix/aix#93), aw#14
 ]
 
 [project.urls]
