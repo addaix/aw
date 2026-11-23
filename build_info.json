@@ -1,34 +1,34 @@
 {
   "schema_version": 1,
-  "built_at": "2026-11-23T02:47:43Z",
+  "built_at": "2026-11-23T07:03:53Z",
   "package": {
     "name": "aw",
-    "version": "0.1.10",
+    "version": "0.1.11",
     "display_name": "aw",
     "source": "pyproject.toml"
   },
   "git": {
     "available": true,
-    "commit": "e9956dbd3e6b02e78280b81e5a2f00d6b946b73f",
-    "short_commit": "e9956db",
+    "commit": "837353717c8925bcc2d7b7e1d7fde82dc2ce229a",
+    "short_commit": "8373537",
     "branch": "main",
     "tags": [
-      "0.1.10"
+      "0.1.11"
     ],
     "dirty": false,
     "remote_url": "https://github.com/addaix/aw",
-    "commit_url": "https://github.com/addaix/aw/commit/e9956dbd3e6b02e78280b81e5a2f00d6b946b73f",
+    "commit_url": "https://github.com/addaix/aw/commit/837353717c8925bcc2d7b7e1d7fde82dc2ce229a",
     "error": null
   },
   "ci": {
     "provider": "github",
     "repository": "addaix/aw",
-    "sha": "9000f9fa4b08b09c83b2060e25cc5029d5de8a5b",
+    "sha": "efc2ec77cf941881386875f25a15f76c5c854a33",
     "sha_in_history": true,
     "ref": "refs/heads/main",
     "ref_name": "main",
-    "run_id": "45101996535",
-    "run_url": "https://github.com/addaix/aw/actions/runs/45101996535",
+    "run_id": "45128115937",
+    "run_url": "https://github.com/addaix/aw/actions/runs/45128115937",
     "server_url": "https://github.com"
   },
   "tools": {
@@ -57,16 +57,16 @@
     "docs_dir": "docsrc"
   },
   "site": {
-    "modules_documented": 14,
-    "objects_documented": 196
+    "modules_documented": 15,
+    "objects_documented": 198
   },
   "pypi": {
     "checked": true,
-    "latest": "0.1.10",
+    "latest": "0.1.11",
     "relation": "same",
     "error": null
   },
-  "reproduce": "git clone https://github.com/addaix/aw && cd aw\ngit checkout e9956dbd3e6b02e78280b81e5a2f00d6b946b73f\npip install \"epythet==0.2.23\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
+  "reproduce": "git clone https://github.com/addaix/aw && cd aw\ngit checkout 837353717c8925bcc2d7b7e1d7fde82dc2ce229a\npip install \"epythet==0.2.23\"\nepythet quickstart . --ignore tests/ scrap/ examples/",
   "warnings": [],
   "alignment": {
     "aligned": true,

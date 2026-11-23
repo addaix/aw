@@ -10,6 +10,7 @@
 - [aw.cosmo](aw.cosmo.html.md): Cosmograph-specific validator tool.
 - [aw.dispatch](aw.dispatch.html.md): Cheap-first dispatch to a skill: calibrated retrieval first, an LLM adjudicator only on ambiguity.
 - [aw.func_calling](aw.func_calling.html.md): This module provides robust templates for creating (python) code-generating functions
+- [aw.llm](aw.llm.html.md): The one place aw reaches a language model: &#96;aix&#96; first, &#96;oa&#96; only as a fallback.
 - [aw.loading](aw.loading.html.md): Loading agent for converting data sources to pandas DataFrames.
 - [aw.orchestration](aw.orchestration.html.md): Orchestration and workflow management for agentic steps.
 - [aw.preparing](aw.preparing.html.md): Preparation agent for transforming data to meet target requirements.

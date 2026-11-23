@@ -38,17 +38,14 @@ Create a code generation function from a template and schema.
 * **Parameters:**
   * **template** ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str)) – The prompt template for code generation
   * **code_schema** ([`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)) – JSON schema defining the output format
-  * **prompt_json_function_maker** – Factory function (defaults to oa.prompt_json_function)
+  * **prompt_json_function_maker** – Factory function (defaults to aix.prompt_to_json via aw.llm)
 * **Returns:**
   A function that generates code from task descriptions
 
 ### Example
 
 ```pycon
->>> from oa import prompt_json_function
->>> write_code = make_code_generator(
-...     prompt_json_function_maker=prompt_json_function
-... )
+>>> write_code = make_code_generator()
 >>> result = write_code(
 ...     task='Add {a} and {b}',
 ...     output_schema='{"type": "object", "properties": {"sum": {"type": "number"}}}',

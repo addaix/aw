@@ -6,15 +6,15 @@ Includes file sampling, LLM facades, and other common utilities.
 
 ### Functions
 
-| [`claude_desktop_config`](#aw.util.claude_desktop_config)([key_path, config_dir])   | Get a FileStore interface to Claude Desktop's configuration.      |
-|--------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|
-| [`compute_dataframe_info`](#aw.util.compute_dataframe_info)(df)                      | Compute comprehensive info about a DataFrame.                     |
-| [`create_oa_chat`](#aw.util.create_oa_chat)()                                | Create a chat function using the oa package.                      |
-| [`create_openai_chat`](#aw.util.create_openai_chat)([model])                     | Create a text-to-text chat function using OpenAI API.             |
-| [`default_llm_factory`](#aw.util.default_llm_factory)([model])                    | Factory to create LLM function from various specifications.       |
-| [`get_numeric_columns`](#aw.util.get_numeric_columns)(df[, exclude_nulls])        | Get numeric columns from DataFrame.                               |
-| [`infer_loader_from_extension`](#aw.util.infer_loader_from_extension)(extension)          | Infer pandas loader function from file extension.                 |
-| [`infer_loader_params`](#aw.util.infer_loader_params)(extension[, sample_text])   | Infer parameters for pandas loader based on file characteristics. |
+| [`claude_desktop_config`](#aw.util.claude_desktop_config)([key_path, config_dir])   | Get a FileStore interface to Claude Desktop's configuration.                                                                                  |
+|--------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| [`compute_dataframe_info`](#aw.util.compute_dataframe_info)(df)                      | Compute comprehensive info about a DataFrame.                                                                                                 |
+| [`create_oa_chat`](#aw.util.create_oa_chat)()                                | Create a chat function through [`aw.llm.default_chat()`](aw.llm.html.md#aw.llm.default_chat) (`aix`, else `oa`). |
+| [`create_openai_chat`](#aw.util.create_openai_chat)([model])                     | Create a text-to-text chat function using OpenAI API.                                                                                         |
+| [`default_llm_factory`](#aw.util.default_llm_factory)([model])                    | Factory to create LLM function from various specifications.                                                                                   |
+| [`get_numeric_columns`](#aw.util.get_numeric_columns)(df[, exclude_nulls])        | Get numeric columns from DataFrame.                                                                                                           |
+| [`infer_loader_from_extension`](#aw.util.infer_loader_from_extension)(extension)          | Infer pandas loader function from file extension.                                                                                             |
+| [`infer_loader_params`](#aw.util.infer_loader_params)(extension[, sample_text])   | Infer parameters for pandas loader based on file characteristics.                                                                             |
 
 ### Classes
 
@@ -96,7 +96,9 @@ Compute comprehensive info about a DataFrame.
 
 ### aw.util.create_oa_chat()
 
-Create a chat function using the oa package.
+Create a chat function through [`aw.llm.default_chat()`](aw.llm.html.md#aw.llm.default_chat) (`aix`, else `oa`).
+
+The name is kept for compatibility; generation is routed through `aix`.
 
 * **Return type:**
   [`Callable`](https://docs.python.org/3/library/typing.html#typing.Callable)[[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str)], [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)]

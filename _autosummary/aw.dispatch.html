@@ -209,6 +209,7 @@
 <li class="toctree-l3"><a class="reference internal" href="aw.cosmo.html">aw.cosmo</a></li>
 <li class="toctree-l3 current current-page"><a class="current reference internal" href="#">aw.dispatch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="aw.func_calling.html">aw.func_calling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aw.llm.html">aw.llm</a></li>
 <li class="toctree-l3"><a class="reference internal" href="aw.loading.html">aw.loading</a></li>
 <li class="toctree-l3"><a class="reference internal" href="aw.orchestration.html">aw.orchestration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="aw.preparing.html">aw.preparing</a></li>
@@ -319,7 +320,7 @@ a fake search and a fake <code class="docutils literal notranslate"><span class=
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">aw.dispatch.</span></span><span class="sig-name descname"><span class="pre">Adjudicator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">&lt;function</span> <span class="pre">_default_ask&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">describe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">none_token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'NONE'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aw/dispatch.html#Adjudicator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aw.dispatch.Adjudicator" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The escalation layer: an LLM picks one of the top-k candidates for the raw request, or none.</p>
-<p><code class="docutils literal notranslate"><span class="pre">ask(prompt)</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code> is the model call (default: <code class="docutils literal notranslate"><span class="pre">oa.chat</span></code>); <code class="docutils literal notranslate"><span class="pre">describe(name)</span></code>
+<p><code class="docutils literal notranslate"><span class="pre">ask(prompt)</span> <span class="pre">-&gt;</span> <span class="pre">str</span></code> is the model call (default: <code class="docutils literal notranslate"><span class="pre">aix.chat</span></code>, via <a class="reference internal" href="aw.llm.html#module-aw.llm" title="aw.llm"><code class="xref py py-mod docutils literal notranslate"><span class="pre">aw.llm</span></code></a>); <code class="docutils literal notranslate"><span class="pre">describe(name)</span></code>
 returns a candidate’s description so the model sees cards, not bare names. The model
 sees the user’s words verbatim: a summary is a lossy channel (opsward ADR 0011 §3).</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">adj</span> <span class="o">=</span> <span class="n">Adjudicator</span><span class="p">(</span><span class="n">ask</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="s1">'ge-write-issue'</span><span class="p">,</span> <span class="n">describe</span><span class="o">=</span><span class="p">{</span><span class="s1">'ge-write-issue'</span><span class="p">:</span> <span class="s1">'Write an issue.'</span><span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">)</span>
@@ -483,7 +484,7 @@ corpus; no adjudicator (pass an <a class="reference internal" href="#aw.dispatch
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=3a6d79cd"></script>
+</div><script src="../_static/documentation_options.js?v=932d0dab"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>

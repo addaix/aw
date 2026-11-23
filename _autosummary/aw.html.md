@@ -38,47 +38,47 @@ Architecture:
 
 ### Functions
 
-| [`schema_validator`](#aw.schema_validator)(schema)                           | Create a validator from a schema (Pydantic, JSON Schema, etc.).                                                  |
-|-----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| [`info_dict_validator`](#aw.info_dict_validator)(compute_info, check_info)      | Create a validator that computes info then checks it.                                                            |
-| [`functional_validator`](#aw.functional_validator)(try_function[, ...])          | Create a validator that tries to use the artifact for its purpose.                                               |
-| [`all_validators`](#aw.all_validators)(\*validators)                       | Combine multiple validators - all must pass.                                                                     |
-| [`any_validator`](#aw.any_validator)(\*validators)                        | Combine multiple validators - at least one must pass.                                                            |
-| [`is_type`](#aw.is_type)(expected_type)                             | Validator that checks artifact type.                                                                             |
-| [`is_not_empty`](#aw.is_not_empty)()                                     | Validator that checks artifact is not empty.                                                                     |
-| [`has_attributes`](#aw.has_attributes)(\*\*required_attrs)                 | Validator that checks artifact has required attributes.                                                          |
-| [`create_langchain_executor`](#aw.create_langchain_executor)()                        | Create an executor using LangChain's CodeInterpreter (if available).                                             |
-| [`djoin`](#aw.djoin)(\*p)                                         | Join two or more pathname components, inserting '/' as needed.                                                   |
-| [`infer_loader_from_extension`](#aw.infer_loader_from_extension)(extension)             | Infer pandas loader function from file extension.                                                                |
-| [`infer_loader_params`](#aw.infer_loader_params)(extension[, sample_text])      | Infer parameters for pandas loader based on file characteristics.                                                |
-| [`compute_dataframe_info`](#aw.compute_dataframe_info)(df)                         | Compute comprehensive info about a DataFrame.                                                                    |
-| [`get_numeric_columns`](#aw.get_numeric_columns)(df[, exclude_nulls])           | Get numeric columns from DataFrame.                                                                              |
-| [`default_llm_factory`](#aw.default_llm_factory)([model])                       | Factory to create LLM function from various specifications.                                                      |
-| [`create_openai_chat`](#aw.create_openai_chat)([model])                        | Create a text-to-text chat function using OpenAI API.                                                            |
-| [`create_oa_chat`](#aw.create_oa_chat)()                                   | Create a chat function using the oa package.                                                                     |
-| [`create_loading_agent`](#aw.create_loading_agent)([llm, validator, ...])        | Factory function to create a loading agent.                                                                      |
-| [`create_preparation_agent`](#aw.create_preparation_agent)([target, ...])            | Factory function to create a preparation agent.                                                                  |
-| [`create_cosmo_validator`](#aw.create_cosmo_validator)([cosmo_function, ...])      | Create a validator for cosmograph requirements.                                                                  |
-| [`try_cosmo_visualization`](#aw.try_cosmo_visualization)(df[, cosmo_function])      | Try to create a cosmograph visualization.                                                                        |
-| [`basic_cosmo_validator`](#aw.basic_cosmo_validator)()                            | Basic validator that checks structural requirements only.                                                        |
-| [`strict_cosmo_validator`](#aw.strict_cosmo_validator)()                           | Strict validator that actually calls cosmograph.                                                                 |
-| [`infer_cosmo_params`](#aw.infer_cosmo_params)(df)                             | Infer suitable cosmograph parameters from DataFrame.                                                             |
-| [`create_data_prep_workflow`](#aw.create_data_prep_workflow)([loading_config, ...])   | Factory to create a data preparation workflow.                                                                   |
-| [`create_cosmo_prep_workflow`](#aw.create_cosmo_prep_workflow)([...])                  | Create a workflow specifically for cosmograph preparation.                                                       |
-| [`load_and_prepare`](#aw.load_and_prepare)(source_uri[, target, ...])        | Convenience function to load and prepare data in one call.                                                       |
-| [`load_for_cosmo`](#aw.load_for_cosmo)(source_uri[, max_retries, strict])  | Load and prepare data specifically for cosmograph visualization.                                                 |
-| [`extract_agent_spec`](#aw.extract_agent_spec)(agent[, name])                  | Extract a normalized AgentSpec from any aw agent.                                                                |
-| [`to_claude_skill`](#aw.to_claude_skill)(agent[, name, description, ...])   | Translate an aw agent to a Claude Code SKILL.md string.                                                          |
-| [`claude_skill_from_spec`](#aw.claude_skill_from_spec)(spec, \*[, name, ...])      | Render a Claude Code SKILL.md string from an [`AgentSpec`](#aw.AgentSpec).         |
-| [`write_skill_directory`](#aw.write_skill_directory)(agent, output_dir[, ...])    | Write a complete Claude Code skill directory.                                                                    |
-| [`workflow_to_skills`](#aw.workflow_to_skills)(workflow, output_dir)           | Translate an AgenticWorkflow into a set of Claude Code skills.                                                   |
-| [`to_crewai_yaml`](#aw.to_crewai_yaml)(agent[, name, role, goal, ...])     | Translate an aw agent to a CrewAI agent YAML config dict.                                                        |
-| [`crewai_yaml_from_spec`](#aw.crewai_yaml_from_spec)(spec, \*[, name, role, ...]) | Render a CrewAI agent config dict from an [`AgentSpec`](#aw.AgentSpec).            |
-| [`workflow_to_crewai_yaml`](#aw.workflow_to_crewai_yaml)(workflow)                  | Translate an AgenticWorkflow to CrewAI agents.yaml + tasks.yaml.                                                 |
-| [`to_openai_tools`](#aw.to_openai_tools)(agent)                             | Translate an aw agent's tools to OpenAI function-calling tool schemas.                                           |
-| [`openai_tools_from_spec`](#aw.openai_tools_from_spec)(spec)                       | Render OpenAI function-calling tool schemas from an [`AgentSpec`](#aw.AgentSpec).  |
-| [`to_openai_assistant`](#aw.to_openai_assistant)(agent[, name, model])          | Translate an aw agent to an OpenAI Assistant-style config dict.                                                  |
-| [`openai_assistant_from_spec`](#aw.openai_assistant_from_spec)(spec, \*[, name, ...])  | Render an OpenAI Assistant-style config dict from an [`AgentSpec`](#aw.AgentSpec). |
+| [`schema_validator`](#aw.schema_validator)(schema)                           | Create a validator from a schema (Pydantic, JSON Schema, etc.).                                                                               |
+|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| [`info_dict_validator`](#aw.info_dict_validator)(compute_info, check_info)      | Create a validator that computes info then checks it.                                                                                         |
+| [`functional_validator`](#aw.functional_validator)(try_function[, ...])          | Create a validator that tries to use the artifact for its purpose.                                                                            |
+| [`all_validators`](#aw.all_validators)(\*validators)                       | Combine multiple validators - all must pass.                                                                                                  |
+| [`any_validator`](#aw.any_validator)(\*validators)                        | Combine multiple validators - at least one must pass.                                                                                         |
+| [`is_type`](#aw.is_type)(expected_type)                             | Validator that checks artifact type.                                                                                                          |
+| [`is_not_empty`](#aw.is_not_empty)()                                     | Validator that checks artifact is not empty.                                                                                                  |
+| [`has_attributes`](#aw.has_attributes)(\*\*required_attrs)                 | Validator that checks artifact has required attributes.                                                                                       |
+| [`create_langchain_executor`](#aw.create_langchain_executor)()                        | Create an executor using LangChain's CodeInterpreter (if available).                                                                          |
+| [`djoin`](#aw.djoin)(\*p)                                         | Join two or more pathname components, inserting '/' as needed.                                                                                |
+| [`infer_loader_from_extension`](#aw.infer_loader_from_extension)(extension)             | Infer pandas loader function from file extension.                                                                                             |
+| [`infer_loader_params`](#aw.infer_loader_params)(extension[, sample_text])      | Infer parameters for pandas loader based on file characteristics.                                                                             |
+| [`compute_dataframe_info`](#aw.compute_dataframe_info)(df)                         | Compute comprehensive info about a DataFrame.                                                                                                 |
+| [`get_numeric_columns`](#aw.get_numeric_columns)(df[, exclude_nulls])           | Get numeric columns from DataFrame.                                                                                                           |
+| [`default_llm_factory`](#aw.default_llm_factory)([model])                       | Factory to create LLM function from various specifications.                                                                                   |
+| [`create_openai_chat`](#aw.create_openai_chat)([model])                        | Create a text-to-text chat function using OpenAI API.                                                                                         |
+| [`create_oa_chat`](#aw.create_oa_chat)()                                   | Create a chat function through [`aw.llm.default_chat()`](aw.llm.html.md#aw.llm.default_chat) (`aix`, else `oa`). |
+| [`create_loading_agent`](#aw.create_loading_agent)([llm, validator, ...])        | Factory function to create a loading agent.                                                                                                   |
+| [`create_preparation_agent`](#aw.create_preparation_agent)([target, ...])            | Factory function to create a preparation agent.                                                                                               |
+| [`create_cosmo_validator`](#aw.create_cosmo_validator)([cosmo_function, ...])      | Create a validator for cosmograph requirements.                                                                                               |
+| [`try_cosmo_visualization`](#aw.try_cosmo_visualization)(df[, cosmo_function])      | Try to create a cosmograph visualization.                                                                                                     |
+| [`basic_cosmo_validator`](#aw.basic_cosmo_validator)()                            | Basic validator that checks structural requirements only.                                                                                     |
+| [`strict_cosmo_validator`](#aw.strict_cosmo_validator)()                           | Strict validator that actually calls cosmograph.                                                                                              |
+| [`infer_cosmo_params`](#aw.infer_cosmo_params)(df)                             | Infer suitable cosmograph parameters from DataFrame.                                                                                          |
+| [`create_data_prep_workflow`](#aw.create_data_prep_workflow)([loading_config, ...])   | Factory to create a data preparation workflow.                                                                                                |
+| [`create_cosmo_prep_workflow`](#aw.create_cosmo_prep_workflow)([...])                  | Create a workflow specifically for cosmograph preparation.                                                                                    |
+| [`load_and_prepare`](#aw.load_and_prepare)(source_uri[, target, ...])        | Convenience function to load and prepare data in one call.                                                                                    |
+| [`load_for_cosmo`](#aw.load_for_cosmo)(source_uri[, max_retries, strict])  | Load and prepare data specifically for cosmograph visualization.                                                                              |
+| [`extract_agent_spec`](#aw.extract_agent_spec)(agent[, name])                  | Extract a normalized AgentSpec from any aw agent.                                                                                             |
+| [`to_claude_skill`](#aw.to_claude_skill)(agent[, name, description, ...])   | Translate an aw agent to a Claude Code SKILL.md string.                                                                                       |
+| [`claude_skill_from_spec`](#aw.claude_skill_from_spec)(spec, \*[, name, ...])      | Render a Claude Code SKILL.md string from an [`AgentSpec`](#aw.AgentSpec).                                      |
+| [`write_skill_directory`](#aw.write_skill_directory)(agent, output_dir[, ...])    | Write a complete Claude Code skill directory.                                                                                                 |
+| [`workflow_to_skills`](#aw.workflow_to_skills)(workflow, output_dir)           | Translate an AgenticWorkflow into a set of Claude Code skills.                                                                                |
+| [`to_crewai_yaml`](#aw.to_crewai_yaml)(agent[, name, role, goal, ...])     | Translate an aw agent to a CrewAI agent YAML config dict.                                                                                     |
+| [`crewai_yaml_from_spec`](#aw.crewai_yaml_from_spec)(spec, \*[, name, role, ...]) | Render a CrewAI agent config dict from an [`AgentSpec`](#aw.AgentSpec).                                         |
+| [`workflow_to_crewai_yaml`](#aw.workflow_to_crewai_yaml)(workflow)                  | Translate an AgenticWorkflow to CrewAI agents.yaml + tasks.yaml.                                                                              |
+| [`to_openai_tools`](#aw.to_openai_tools)(agent)                             | Translate an aw agent's tools to OpenAI function-calling tool schemas.                                                                        |
+| [`openai_tools_from_spec`](#aw.openai_tools_from_spec)(spec)                       | Render OpenAI function-calling tool schemas from an [`AgentSpec`](#aw.AgentSpec).                               |
+| [`to_openai_assistant`](#aw.to_openai_assistant)(agent[, name, model])          | Translate an aw agent to an OpenAI Assistant-style config dict.                                                                               |
+| [`openai_assistant_from_spec`](#aw.openai_assistant_from_spec)(spec, \*[, name, ...])  | Render an OpenAI Assistant-style config dict from an [`AgentSpec`](#aw.AgentSpec).                              |
 
 ### Classes
 
@@ -764,7 +764,9 @@ Factory function to create a loading agent.
 
 ### aw.create_oa_chat()
 
-Create a chat function using the oa package.
+Create a chat function through [`aw.llm.default_chat()`](aw.llm.html.md#aw.llm.default_chat) (`aix`, else `oa`).
+
+The name is kept for compatibility; generation is routed through `aix`.
 
 * **Return type:**
   [`Callable`](https://docs.python.org/3/library/typing.html#typing.Callable)[[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str)], [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)]
@@ -1355,6 +1357,7 @@ output_dir/
 | [`cosmo`](aw.cosmo.html.md#module-aw.cosmo)                 | Cosmograph-specific validator tool.                                                                                                                                      |
 | [`dispatch`](aw.dispatch.html.md#module-aw.dispatch)           | Cheap-first dispatch to a skill: calibrated retrieval first, an LLM adjudicator only on ambiguity.                                                                       |
 | [`func_calling`](aw.func_calling.html.md#module-aw.func_calling)   | This module provides robust templates for creating (python) code-generating functions that can translate natural language task descriptions into executable Python code. |
+| [`llm`](aw.llm.html.md#module-aw.llm)                     | The one place aw reaches a language model: `aix` first, `oa` only as a fallback.                                                                                         |
 | [`loading`](aw.loading.html.md#module-aw.loading)             | Loading agent for converting data sources to pandas DataFrames.                                                                                                          |
 | [`orchestration`](aw.orchestration.html.md#module-aw.orchestration) | Orchestration and workflow management for agentic steps.                                                                                                                 |
 | [`preparing`](aw.preparing.html.md#module-aw.preparing)         | Preparation agent for transforming data to meet target requirements.                                                                                                     |

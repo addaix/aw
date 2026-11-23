@@ -12,6 +12,7 @@
 - [aw.cosmo](_autosummary/aw.cosmo.html.md): Cosmograph-specific validator tool.
 - [aw.dispatch](_autosummary/aw.dispatch.html.md): Cheap-first dispatch to a skill: calibrated retrieval first, an LLM adjudicator only on ambiguity.
 - [aw.func_calling](_autosummary/aw.func_calling.html.md): This module provides robust templates for creating (python) code-generating functions
+- [aw.llm](_autosummary/aw.llm.html.md): The one place aw reaches a language model: &#96;aix&#96; first, &#96;oa&#96; only as a fallback.
 - [aw.loading](_autosummary/aw.loading.html.md): Loading agent for converting data sources to pandas DataFrames.
 - [aw.orchestration](_autosummary/aw.orchestration.html.md): Orchestration and workflow management for agentic steps.
 - [aw.preparing](_autosummary/aw.preparing.html.md): Preparation agent for transforming data to meet target requirements.
@@ -21,7 +22,7 @@
 - [aw.translators](_autosummary/aw.translators.html.md): Translators from aw agent specifications to other agent formats.
 - [aw.util](_autosummary/aw.util.html.md): Utility tools and helper functions for agents.
 - [aw.validation](_autosummary/aw.validation.html.md): Validation system supporting three flavors: schema, info-dict, and functional.
-- [About this build](about-this-build.html.md): This documentation was built on &#42;&#42;2026-11-23 02:47 UTC&#42;&#42; from commit &lt;a href="https://github.com/add...
+- [About this build](about-this-build.html.md): This documentation was built on &#42;&#42;2026-11-23 07:03 UTC&#42;&#42; from commit &lt;a href="https://github.com/add...
 
 ## Optional
 

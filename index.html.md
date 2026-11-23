@@ -22,8 +22,8 @@ pip install cosmograph
 # For OpenAI LLM
 pip install openai
 
-# For oa package (preferred LLM interface)
-pip install oa
+# LLM calls go through aix (a dependency); oa is only an optional fallback
+pip install 'aw[llm]'
 ```
 
 ## Quick Start
@@ -345,7 +345,7 @@ chain("open an issue for the client about the broken export")  # -> 'ge-write-is
 chain.trace("deploy the site")  # layer, ranked candidates, reason
 chain = skills_dispatch_chain(
     adjudicate=Adjudicator()
-)  # escalate through oa.chat on ambiguity
+)  # escalate through aix.chat on ambiguity
 ```
 
 `aw.routing.ConfidentRetrievalStrategy` is the generic piece (any `search(query) -> [(candidate, score)]`), with `floor`, absolute `gap`, relative `rel_gap`, and `dedup_key`.

@@ -206,6 +206,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/aw.cosmo.html">aw.cosmo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/aw.dispatch.html">aw.dispatch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/aw.func_calling.html">aw.func_calling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/aw.llm.html">aw.llm</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/aw.loading.html">aw.loading</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/aw.orchestration.html">aw.orchestration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/aw.preparing.html">aw.preparing</a></li>
@@ -342,9 +343,9 @@
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_default_ask</span><span class="p">(</span><span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>  <span class="c1"># pragma: no cover - needs a live model</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">oa</span><span class="w"> </span><span class="kn">import</span> <span class="n">chat</span>  <span class="c1"># the LLM facade aw already depends on</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">aw.llm</span><span class="w"> </span><span class="kn">import</span> <span class="n">default_chat</span>
 
-    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">chat</span><span class="p">(</span><span class="n">prompt</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">default_chat</span><span class="p">()(</span><span class="n">prompt</span><span class="p">))</span>
 
 
 <div class="viewcode-block" id="Adjudicator">
@@ -353,7 +354,7 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">Adjudicator</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""The escalation layer: an LLM picks one of the top-k candidates for the raw request, or none.</span>
 
-<span class="sd">    ``ask(prompt) -&gt; str`` is the model call (default: ``oa.chat``); ``describe(name)``</span>
+<span class="sd">    ``ask(prompt) -&gt; str`` is the model call (default: ``aix.chat``, via :mod:`aw.llm`); ``describe(name)``</span>
 <span class="sd">    returns a candidate's description so the model sees cards, not bare names. The model</span>
 <span class="sd">    sees the user's words verbatim: a summary is a lossy channel (opsward ADR 0011 §3).</span>
 
@@ -525,7 +526,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=3a6d79cd"></script>
+</div><script src="../../_static/documentation_options.js?v=932d0dab"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

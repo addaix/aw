@@ -1,0 +1,13 @@
+aw.llm
+======
+
+.. automodule:: aw.llm
+
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      default_chat
+      default_json_function_maker
+   

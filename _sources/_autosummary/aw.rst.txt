@@ -81,6 +81,7 @@
    cosmo
    dispatch
    func_calling
+   llm
    loading
    orchestration
    preparing

@@ -206,6 +206,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/aw.cosmo.html">aw.cosmo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/aw.dispatch.html">aw.dispatch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/aw.func_calling.html">aw.func_calling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../_autosummary/aw.llm.html">aw.llm</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/aw.loading.html">aw.loading</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/aw.orchestration.html">aw.orchestration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../_autosummary/aw.preparing.html">aw.preparing</a></li>
@@ -527,16 +528,13 @@
 <span class="sd">    Args:</span>
 <span class="sd">        template: The prompt template for code generation</span>
 <span class="sd">        code_schema: JSON schema defining the output format</span>
-<span class="sd">        prompt_json_function_maker: Factory function (defaults to oa.prompt_json_function)</span>
+<span class="sd">        prompt_json_function_maker: Factory function (defaults to aix.prompt_to_json via aw.llm)</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        A function that generates code from task descriptions</span>
 
 <span class="sd">    Example:</span>
-<span class="sd">        &gt;&gt;&gt; from oa import prompt_json_function</span>
-<span class="sd">        &gt;&gt;&gt; write_code = make_code_generator(</span>
-<span class="sd">        ...     prompt_json_function_maker=prompt_json_function</span>
-<span class="sd">        ... )</span>
+<span class="sd">        &gt;&gt;&gt; write_code = make_code_generator()  # doctest: +SKIP</span>
 <span class="sd">        &gt;&gt;&gt; result = write_code(  # doctest: +SKIP</span>
 <span class="sd">        ...     task='Add {a} and {b}',</span>
 <span class="sd">        ...     output_schema='{"type": "object", "properties": {"sum": {"type": "number"}}}',</span>
@@ -547,14 +545,13 @@
 <span class="sd">        {'sum': 5}</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">prompt_json_function_maker</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="c1"># Try to import from oa</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="kn">from</span><span class="w"> </span><span class="nn">oa</span><span class="w"> </span><span class="kn">import</span> <span class="n">prompt_json_function</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">aw.llm</span><span class="w"> </span><span class="kn">import</span> <span class="n">default_json_function_maker</span>
 
-            <span class="n">prompt_json_function_maker</span> <span class="o">=</span> <span class="n">prompt_json_function</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">prompt_json_function_maker</span> <span class="o">=</span> <span class="n">default_json_function_maker</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="s2">"Must provide prompt_json_function_maker or have 'oa' package installed"</span>
+                <span class="s2">"Must provide prompt_json_function_maker or have 'aix' (or 'oa') installed"</span>
             <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">prompt_json_function_maker</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">json_schema</span><span class="o">=</span><span class="n">code_schema</span><span class="p">)</span></div>
@@ -632,7 +629,7 @@
     <span class="nb">print</span><span class="p">(</span><span class="s2">"USAGE EXAMPLE:"</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"""</span>
-<span class="s2">from oa import prompt_json_function</span>
+<span class="s2">from aix import prompt_to_json as prompt_json_function</span>
 <span class="s2">from code_generation_improved import CODE_WRITING_TEMPLATE, CODE_DEFINITION_SCHEMA</span>
 
 <span class="s2"># Create the code generator</span>
@@ -686,7 +683,7 @@
       
     </aside>
   </div>
-</div><script src="../../_static/documentation_options.js?v=3a6d79cd"></script>
+</div><script src="../../_static/documentation_options.js?v=932d0dab"></script>
     <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/scripts/furo.js?v=46bd48cc"></script>

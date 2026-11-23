@@ -45,7 +45,7 @@ Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
 The escalation layer: an LLM picks one of the top-k candidates for the raw request, or none.
 
-`ask(prompt) -> str` is the model call (default: `oa.chat`); `describe(name)`
+`ask(prompt) -> str` is the model call (default: `aix.chat`, via [`aw.llm`](aw.llm.html.md#module-aw.llm)); `describe(name)`
 returns a candidate’s description so the model sees cards, not bare names. The model
 sees the user’s words verbatim: a summary is a lossy channel (opsward ADR 0011 §3).
 

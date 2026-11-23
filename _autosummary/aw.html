@@ -209,6 +209,7 @@
 <li class="toctree-l3"><a class="reference internal" href="aw.cosmo.html">aw.cosmo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="aw.dispatch.html">aw.dispatch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="aw.func_calling.html">aw.func_calling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aw.llm.html">aw.llm</a></li>
 <li class="toctree-l3"><a class="reference internal" href="aw.loading.html">aw.loading</a></li>
 <li class="toctree-l3"><a class="reference internal" href="aw.orchestration.html">aw.orchestration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="aw.preparing.html">aw.preparing</a></li>
@@ -349,7 +350,7 @@ data for various purposes (e.g., visualization with cosmograph).</p>
 <td><p>Create a text-to-text chat function using OpenAI API.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#aw.create_oa_chat" title="aw.create_oa_chat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_oa_chat</span></code></a>()</p></td>
-<td><p>Create a chat function using the oa package.</p></td>
+<td><p>Create a chat function through <a class="reference internal" href="aw.llm.html#aw.llm.default_chat" title="aw.llm.default_chat"><code class="xref py py-func docutils literal notranslate"><span class="pre">aw.llm.default_chat()</span></code></a> (<code class="docutils literal notranslate"><span class="pre">aix</span></code>, else <code class="docutils literal notranslate"><span class="pre">oa</span></code>).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#aw.create_loading_agent" title="aw.create_loading_agent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_loading_agent</span></code></a>([llm, validator, ...])</p></td>
 <td><p>Factory function to create a loading agent.</p></td>
@@ -1306,7 +1307,8 @@ DataFrame to see if it’s ready for visualization.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="aw.create_oa_chat">
 <span class="sig-prename descclassname"><span class="pre">aw.</span></span><span class="sig-name descname"><span class="pre">create_oa_chat</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aw/util.html#create_oa_chat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aw.create_oa_chat" title="Link to this definition">¶</a></dt>
-<dd><p>Create a chat function using the oa package.</p>
+<dd><p>Create a chat function through <a class="reference internal" href="aw.llm.html#aw.llm.default_chat" title="aw.llm.default_chat"><code class="xref py py-func docutils literal notranslate"><span class="pre">aw.llm.default_chat()</span></code></a> (<code class="docutils literal notranslate"><span class="pre">aix</span></code>, else <code class="docutils literal notranslate"><span class="pre">oa</span></code>).</p>
+<p>The name is kept for compatibility; generation is routed through <code class="docutils literal notranslate"><span class="pre">aix</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
@@ -2030,31 +2032,34 @@ YAML-serializable config dicts</p>
 <tr class="row-even"><td><p><a class="reference internal" href="aw.func_calling.html#module-aw.func_calling" title="aw.func_calling"><code class="xref py py-obj docutils literal notranslate"><span class="pre">func_calling</span></code></a></p></td>
 <td><p>This module provides robust templates for creating (python) code-generating functions that can translate natural language task descriptions into executable Python code.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="aw.loading.html#module-aw.loading" title="aw.loading"><code class="xref py py-obj docutils literal notranslate"><span class="pre">loading</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="aw.llm.html#module-aw.llm" title="aw.llm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">llm</span></code></a></p></td>
+<td><p>The one place aw reaches a language model: <code class="docutils literal notranslate"><span class="pre">aix</span></code> first, <code class="docutils literal notranslate"><span class="pre">oa</span></code> only as a fallback.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="aw.loading.html#module-aw.loading" title="aw.loading"><code class="xref py py-obj docutils literal notranslate"><span class="pre">loading</span></code></a></p></td>
 <td><p>Loading agent for converting data sources to pandas DataFrames.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="aw.orchestration.html#module-aw.orchestration" title="aw.orchestration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">orchestration</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="aw.orchestration.html#module-aw.orchestration" title="aw.orchestration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">orchestration</span></code></a></p></td>
 <td><p>Orchestration and workflow management for agentic steps.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="aw.preparing.html#module-aw.preparing" title="aw.preparing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">preparing</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="aw.preparing.html#module-aw.preparing" title="aw.preparing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">preparing</span></code></a></p></td>
 <td><p>Preparation agent for transforming data to meet target requirements.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="aw.py_gen.html#module-aw.py_gen" title="aw.py_gen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">py_gen</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="aw.py_gen.html#module-aw.py_gen" title="aw.py_gen"><code class="xref py py-obj docutils literal notranslate"><span class="pre">py_gen</span></code></a></p></td>
 <td><p>Function makeing and calling</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="aw.routing.html#module-aw.routing" title="aw.routing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">routing</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="aw.routing.html#module-aw.routing" title="aw.routing"><code class="xref py py-obj docutils literal notranslate"><span class="pre">routing</span></code></a></p></td>
 <td><p>Configurable routing and decision chains for agentic workflows.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="aw.tools.html#module-aw.tools" title="aw.tools"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tools</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="aw.tools.html#module-aw.tools" title="aw.tools"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tools</span></code></a></p></td>
 <td><p>Tools for executing code and other agent actions.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="aw.translators.html#module-aw.translators" title="aw.translators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translators</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="aw.translators.html#module-aw.translators" title="aw.translators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">translators</span></code></a></p></td>
 <td><p>Translators from aw agent specifications to other agent formats.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="aw.util.html#module-aw.util" title="aw.util"><code class="xref py py-obj docutils literal notranslate"><span class="pre">util</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="aw.util.html#module-aw.util" title="aw.util"><code class="xref py py-obj docutils literal notranslate"><span class="pre">util</span></code></a></p></td>
 <td><p>Utility tools and helper functions for agents.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="aw.validation.html#module-aw.validation" title="aw.validation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validation</span></code></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="aw.validation.html#module-aw.validation" title="aw.validation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validation</span></code></a></p></td>
 <td><p>Validation system supporting three flavors: schema, info-dict, and functional.</p></td>
 </tr>
 </tbody>
@@ -2225,7 +2230,7 @@ YAML-serializable config dicts</p>
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=3a6d79cd"></script>
+</div><script src="../_static/documentation_options.js?v=932d0dab"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>

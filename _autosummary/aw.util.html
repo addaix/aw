@@ -209,6 +209,7 @@
 <li class="toctree-l3"><a class="reference internal" href="aw.cosmo.html">aw.cosmo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="aw.dispatch.html">aw.dispatch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="aw.func_calling.html">aw.func_calling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aw.llm.html">aw.llm</a></li>
 <li class="toctree-l3"><a class="reference internal" href="aw.loading.html">aw.loading</a></li>
 <li class="toctree-l3"><a class="reference internal" href="aw.orchestration.html">aw.orchestration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="aw.preparing.html">aw.preparing</a></li>
@@ -275,7 +276,7 @@
 <td><p>Compute comprehensive info about a DataFrame.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#aw.util.create_oa_chat" title="aw.util.create_oa_chat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_oa_chat</span></code></a>()</p></td>
-<td><p>Create a chat function using the oa package.</p></td>
+<td><p>Create a chat function through <a class="reference internal" href="aw.llm.html#aw.llm.default_chat" title="aw.llm.default_chat"><code class="xref py py-func docutils literal notranslate"><span class="pre">aw.llm.default_chat()</span></code></a> (<code class="docutils literal notranslate"><span class="pre">aix</span></code>, else <code class="docutils literal notranslate"><span class="pre">oa</span></code>).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#aw.util.create_openai_chat" title="aw.util.create_openai_chat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_openai_chat</span></code></a>([model])</p></td>
 <td><p>Create a text-to-text chat function using OpenAI API.</p></td>
@@ -388,7 +389,8 @@ mcpServers section if it’s missing.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="aw.util.create_oa_chat">
 <span class="sig-prename descclassname"><span class="pre">aw.util.</span></span><span class="sig-name descname"><span class="pre">create_oa_chat</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/aw/util.html#create_oa_chat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#aw.util.create_oa_chat" title="Link to this definition">¶</a></dt>
-<dd><p>Create a chat function using the oa package.</p>
+<dd><p>Create a chat function through <a class="reference internal" href="aw.llm.html#aw.llm.default_chat" title="aw.llm.default_chat"><code class="xref py py-func docutils literal notranslate"><span class="pre">aw.llm.default_chat()</span></code></a> (<code class="docutils literal notranslate"><span class="pre">aix</span></code>, else <code class="docutils literal notranslate"><span class="pre">oa</span></code>).</p>
+<p>The name is kept for compatibility; generation is routed through <code class="docutils literal notranslate"><span class="pre">aix</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
@@ -597,7 +599,7 @@ mcpServers section if it’s missing.</p>
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=3a6d79cd"></script>
+</div><script src="../_static/documentation_options.js?v=932d0dab"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>

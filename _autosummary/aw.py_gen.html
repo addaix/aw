@@ -209,6 +209,7 @@
 <li class="toctree-l3"><a class="reference internal" href="aw.cosmo.html">aw.cosmo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="aw.dispatch.html">aw.dispatch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="aw.func_calling.html">aw.func_calling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aw.llm.html">aw.llm</a></li>
 <li class="toctree-l3"><a class="reference internal" href="aw.loading.html">aw.loading</a></li>
 <li class="toctree-l3"><a class="reference internal" href="aw.orchestration.html">aw.orchestration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="aw.preparing.html">aw.preparing</a></li>
@@ -315,7 +316,7 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>template</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The prompt template for code generation</p></li>
 <li><p><strong>code_schema</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></span>) – JSON schema defining the output format</p></li>
-<li><p><strong>prompt_json_function_maker</strong> – Factory function (defaults to oa.prompt_json_function)</p></li>
+<li><p><strong>prompt_json_function_maker</strong> – Factory function (defaults to aix.prompt_to_json via aw.llm)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -323,10 +324,7 @@
 </dd>
 </dl>
 <p class="rubric">Example</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">oa</span><span class="w"> </span><span class="kn">import</span> <span class="n">prompt_json_function</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">write_code</span> <span class="o">=</span> <span class="n">make_code_generator</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">prompt_json_function_maker</span><span class="o">=</span><span class="n">prompt_json_function</span>
-<span class="gp">... </span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">write_code</span> <span class="o">=</span> <span class="n">make_code_generator</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">write_code</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">task</span><span class="o">=</span><span class="s1">'Add </span><span class="si">{a}</span><span class="s1"> and </span><span class="si">{b}</span><span class="s1">'</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">output_schema</span><span class="o">=</span><span class="s1">'{"type": "object", "properties": {"sum": {"type": "number"}}}'</span><span class="p">,</span>
@@ -440,7 +438,7 @@
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=3a6d79cd"></script>
+</div><script src="../_static/documentation_options.js?v=932d0dab"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
     <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/scripts/furo.js?v=46bd48cc"></script>

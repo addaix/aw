@@ -1,4 +1,4 @@
-> built 2026-11-23 02:47 UTC from e9956db (main) · aw 0.1.10. Details: build_info.json
+> built 2026-11-23 07:03 UTC from 8373537 (main) · aw 0.1.11. Details: build_info.json
 
 # index.html.md
 
@@ -26,8 +26,8 @@ pip install cosmograph
 # For OpenAI LLM
 pip install openai
 
-# For oa package (preferred LLM interface)
-pip install oa
+# LLM calls go through aix (a dependency); oa is only an optional fallback
+pip install 'aw[llm]'
 ```
 
 ## Quick Start
@@ -349,7 +349,7 @@ chain("open an issue for the client about the broken export")  # -> 'ge-write-is
 chain.trace("deploy the site")  # layer, ranked candidates, reason
 chain = skills_dispatch_chain(
     adjudicate=Adjudicator()
-)  # escalate through oa.chat on ambiguity
+)  # escalate through aix.chat on ambiguity
 ```
 
 `aw.routing.ConfidentRetrievalStrategy` is the generic piece (any `search(query) -> [(candidate, score)]`), with `floor`, absolute `gap`, relative `rel_gap`, and `dedup_key`.
@@ -791,7 +791,7 @@ Bases: [`object`](https://docs.python.org/3/builtins/functions.html#object)
 
 The escalation layer: an LLM picks one of the top-k candidates for the raw request, or none.
 
-`ask(prompt) -> str` is the model call (default: `oa.chat`); `describe(name)`
+`ask(prompt) -> str` is the model call (default: `aix.chat`, via [`aw.llm`](_autosummary/aw.llm.html.md#module-aw.llm)); `describe(name)`
 returns a candidate’s description so the model sees cards, not bare names. The model
 sees the user’s words verbatim: a summary is a lossy channel (opsward ADR 0011 §3).
 
@@ -915,7 +915,7 @@ Create a code generation function from a template and schema.
 * **Parameters:**
   * **template** ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str)) – The prompt template for code generation
   * **code_schema** ([`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)) – JSON schema defining the output format
-  * **prompt_json_function_maker** – Factory function (defaults to oa.prompt_json_function)
+  * **prompt_json_function_maker** – Factory function (defaults to aix.prompt_to_json via aw.llm)
 * **Returns:**
   A function that generates code from task descriptions
 
@@ -985,47 +985,47 @@ Architecture:
 
 ### Functions
 
-| [`schema_validator`](_autosummary/aw.html.md#aw.schema_validator)(schema)                           | Create a validator from a schema (Pydantic, JSON Schema, etc.).                                                  |
-|-----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| [`info_dict_validator`](_autosummary/aw.html.md#aw.info_dict_validator)(compute_info, check_info)      | Create a validator that computes info then checks it.                                                            |
-| [`functional_validator`](_autosummary/aw.html.md#aw.functional_validator)(try_function[, ...])          | Create a validator that tries to use the artifact for its purpose.                                               |
-| [`all_validators`](_autosummary/aw.html.md#aw.all_validators)(\*validators)                       | Combine multiple validators - all must pass.                                                                     |
-| [`any_validator`](_autosummary/aw.html.md#aw.any_validator)(\*validators)                        | Combine multiple validators - at least one must pass.                                                            |
-| [`is_type`](_autosummary/aw.html.md#aw.is_type)(expected_type)                             | Validator that checks artifact type.                                                                             |
-| [`is_not_empty`](_autosummary/aw.html.md#aw.is_not_empty)()                                     | Validator that checks artifact is not empty.                                                                     |
-| [`has_attributes`](_autosummary/aw.html.md#aw.has_attributes)(\*\*required_attrs)                 | Validator that checks artifact has required attributes.                                                          |
-| [`create_langchain_executor`](_autosummary/aw.html.md#aw.create_langchain_executor)()                        | Create an executor using LangChain's CodeInterpreter (if available).                                             |
-| [`djoin`](_autosummary/aw.html.md#aw.djoin)(\*p)                                         | Join two or more pathname components, inserting '/' as needed.                                                   |
-| [`infer_loader_from_extension`](_autosummary/aw.html.md#aw.infer_loader_from_extension)(extension)             | Infer pandas loader function from file extension.                                                                |
-| [`infer_loader_params`](_autosummary/aw.html.md#aw.infer_loader_params)(extension[, sample_text])      | Infer parameters for pandas loader based on file characteristics.                                                |
-| [`compute_dataframe_info`](_autosummary/aw.html.md#aw.compute_dataframe_info)(df)                         | Compute comprehensive info about a DataFrame.                                                                    |
-| [`get_numeric_columns`](_autosummary/aw.html.md#aw.get_numeric_columns)(df[, exclude_nulls])           | Get numeric columns from DataFrame.                                                                              |
-| [`default_llm_factory`](_autosummary/aw.html.md#aw.default_llm_factory)([model])                       | Factory to create LLM function from various specifications.                                                      |
-| [`create_openai_chat`](_autosummary/aw.html.md#aw.create_openai_chat)([model])                        | Create a text-to-text chat function using OpenAI API.                                                            |
-| [`create_oa_chat`](_autosummary/aw.html.md#aw.create_oa_chat)()                                   | Create a chat function using the oa package.                                                                     |
-| [`create_loading_agent`](_autosummary/aw.html.md#aw.create_loading_agent)([llm, validator, ...])        | Factory function to create a loading agent.                                                                      |
-| [`create_preparation_agent`](_autosummary/aw.html.md#aw.create_preparation_agent)([target, ...])            | Factory function to create a preparation agent.                                                                  |
-| [`create_cosmo_validator`](_autosummary/aw.html.md#aw.create_cosmo_validator)([cosmo_function, ...])      | Create a validator for cosmograph requirements.                                                                  |
-| [`try_cosmo_visualization`](_autosummary/aw.html.md#aw.try_cosmo_visualization)(df[, cosmo_function])      | Try to create a cosmograph visualization.                                                                        |
-| [`basic_cosmo_validator`](_autosummary/aw.html.md#aw.basic_cosmo_validator)()                            | Basic validator that checks structural requirements only.                                                        |
-| [`strict_cosmo_validator`](_autosummary/aw.html.md#aw.strict_cosmo_validator)()                           | Strict validator that actually calls cosmograph.                                                                 |
-| [`infer_cosmo_params`](_autosummary/aw.html.md#aw.infer_cosmo_params)(df)                             | Infer suitable cosmograph parameters from DataFrame.                                                             |
-| [`create_data_prep_workflow`](_autosummary/aw.html.md#aw.create_data_prep_workflow)([loading_config, ...])   | Factory to create a data preparation workflow.                                                                   |
-| [`create_cosmo_prep_workflow`](_autosummary/aw.html.md#aw.create_cosmo_prep_workflow)([...])                  | Create a workflow specifically for cosmograph preparation.                                                       |
-| [`load_and_prepare`](_autosummary/aw.html.md#aw.load_and_prepare)(source_uri[, target, ...])        | Convenience function to load and prepare data in one call.                                                       |
-| [`load_for_cosmo`](_autosummary/aw.html.md#aw.load_for_cosmo)(source_uri[, max_retries, strict])  | Load and prepare data specifically for cosmograph visualization.                                                 |
-| [`extract_agent_spec`](_autosummary/aw.html.md#aw.extract_agent_spec)(agent[, name])                  | Extract a normalized AgentSpec from any aw agent.                                                                |
-| [`to_claude_skill`](_autosummary/aw.html.md#aw.to_claude_skill)(agent[, name, description, ...])   | Translate an aw agent to a Claude Code SKILL.md string.                                                          |
-| [`claude_skill_from_spec`](_autosummary/aw.html.md#aw.claude_skill_from_spec)(spec, \*[, name, ...])      | Render a Claude Code SKILL.md string from an [`AgentSpec`](_autosummary/aw.html.md#aw.AgentSpec).         |
-| [`write_skill_directory`](_autosummary/aw.html.md#aw.write_skill_directory)(agent, output_dir[, ...])    | Write a complete Claude Code skill directory.                                                                    |
-| [`workflow_to_skills`](_autosummary/aw.html.md#aw.workflow_to_skills)(workflow, output_dir)           | Translate an AgenticWorkflow into a set of Claude Code skills.                                                   |
-| [`to_crewai_yaml`](_autosummary/aw.html.md#aw.to_crewai_yaml)(agent[, name, role, goal, ...])     | Translate an aw agent to a CrewAI agent YAML config dict.                                                        |
-| [`crewai_yaml_from_spec`](_autosummary/aw.html.md#aw.crewai_yaml_from_spec)(spec, \*[, name, role, ...]) | Render a CrewAI agent config dict from an [`AgentSpec`](_autosummary/aw.html.md#aw.AgentSpec).            |
-| [`workflow_to_crewai_yaml`](_autosummary/aw.html.md#aw.workflow_to_crewai_yaml)(workflow)                  | Translate an AgenticWorkflow to CrewAI agents.yaml + tasks.yaml.                                                 |
-| [`to_openai_tools`](_autosummary/aw.html.md#aw.to_openai_tools)(agent)                             | Translate an aw agent's tools to OpenAI function-calling tool schemas.                                           |
-| [`openai_tools_from_spec`](_autosummary/aw.html.md#aw.openai_tools_from_spec)(spec)                       | Render OpenAI function-calling tool schemas from an [`AgentSpec`](_autosummary/aw.html.md#aw.AgentSpec).  |
-| [`to_openai_assistant`](_autosummary/aw.html.md#aw.to_openai_assistant)(agent[, name, model])          | Translate an aw agent to an OpenAI Assistant-style config dict.                                                  |
-| [`openai_assistant_from_spec`](_autosummary/aw.html.md#aw.openai_assistant_from_spec)(spec, \*[, name, ...])  | Render an OpenAI Assistant-style config dict from an [`AgentSpec`](_autosummary/aw.html.md#aw.AgentSpec). |
+| [`schema_validator`](_autosummary/aw.html.md#aw.schema_validator)(schema)                           | Create a validator from a schema (Pydantic, JSON Schema, etc.).                                                                               |
+|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| [`info_dict_validator`](_autosummary/aw.html.md#aw.info_dict_validator)(compute_info, check_info)      | Create a validator that computes info then checks it.                                                                                         |
+| [`functional_validator`](_autosummary/aw.html.md#aw.functional_validator)(try_function[, ...])          | Create a validator that tries to use the artifact for its purpose.                                                                            |
+| [`all_validators`](_autosummary/aw.html.md#aw.all_validators)(\*validators)                       | Combine multiple validators - all must pass.                                                                                                  |
+| [`any_validator`](_autosummary/aw.html.md#aw.any_validator)(\*validators)                        | Combine multiple validators - at least one must pass.                                                                                         |
+| [`is_type`](_autosummary/aw.html.md#aw.is_type)(expected_type)                             | Validator that checks artifact type.                                                                                                          |
+| [`is_not_empty`](_autosummary/aw.html.md#aw.is_not_empty)()                                     | Validator that checks artifact is not empty.                                                                                                  |
+| [`has_attributes`](_autosummary/aw.html.md#aw.has_attributes)(\*\*required_attrs)                 | Validator that checks artifact has required attributes.                                                                                       |
+| [`create_langchain_executor`](_autosummary/aw.html.md#aw.create_langchain_executor)()                        | Create an executor using LangChain's CodeInterpreter (if available).                                                                          |
+| [`djoin`](_autosummary/aw.html.md#aw.djoin)(\*p)                                         | Join two or more pathname components, inserting '/' as needed.                                                                                |
+| [`infer_loader_from_extension`](_autosummary/aw.html.md#aw.infer_loader_from_extension)(extension)             | Infer pandas loader function from file extension.                                                                                             |
+| [`infer_loader_params`](_autosummary/aw.html.md#aw.infer_loader_params)(extension[, sample_text])      | Infer parameters for pandas loader based on file characteristics.                                                                             |
+| [`compute_dataframe_info`](_autosummary/aw.html.md#aw.compute_dataframe_info)(df)                         | Compute comprehensive info about a DataFrame.                                                                                                 |
+| [`get_numeric_columns`](_autosummary/aw.html.md#aw.get_numeric_columns)(df[, exclude_nulls])           | Get numeric columns from DataFrame.                                                                                                           |
+| [`default_llm_factory`](_autosummary/aw.html.md#aw.default_llm_factory)([model])                       | Factory to create LLM function from various specifications.                                                                                   |
+| [`create_openai_chat`](_autosummary/aw.html.md#aw.create_openai_chat)([model])                        | Create a text-to-text chat function using OpenAI API.                                                                                         |
+| [`create_oa_chat`](_autosummary/aw.html.md#aw.create_oa_chat)()                                   | Create a chat function through [`aw.llm.default_chat()`](_autosummary/aw.llm.html.md#aw.llm.default_chat) (`aix`, else `oa`). |
+| [`create_loading_agent`](_autosummary/aw.html.md#aw.create_loading_agent)([llm, validator, ...])        | Factory function to create a loading agent.                                                                                                   |
+| [`create_preparation_agent`](_autosummary/aw.html.md#aw.create_preparation_agent)([target, ...])            | Factory function to create a preparation agent.                                                                                               |
+| [`create_cosmo_validator`](_autosummary/aw.html.md#aw.create_cosmo_validator)([cosmo_function, ...])      | Create a validator for cosmograph requirements.                                                                                               |
+| [`try_cosmo_visualization`](_autosummary/aw.html.md#aw.try_cosmo_visualization)(df[, cosmo_function])      | Try to create a cosmograph visualization.                                                                                                     |
+| [`basic_cosmo_validator`](_autosummary/aw.html.md#aw.basic_cosmo_validator)()                            | Basic validator that checks structural requirements only.                                                                                     |
+| [`strict_cosmo_validator`](_autosummary/aw.html.md#aw.strict_cosmo_validator)()                           | Strict validator that actually calls cosmograph.                                                                                              |
+| [`infer_cosmo_params`](_autosummary/aw.html.md#aw.infer_cosmo_params)(df)                             | Infer suitable cosmograph parameters from DataFrame.                                                                                          |
+| [`create_data_prep_workflow`](_autosummary/aw.html.md#aw.create_data_prep_workflow)([loading_config, ...])   | Factory to create a data preparation workflow.                                                                                                |
+| [`create_cosmo_prep_workflow`](_autosummary/aw.html.md#aw.create_cosmo_prep_workflow)([...])                  | Create a workflow specifically for cosmograph preparation.                                                                                    |
+| [`load_and_prepare`](_autosummary/aw.html.md#aw.load_and_prepare)(source_uri[, target, ...])        | Convenience function to load and prepare data in one call.                                                                                    |
+| [`load_for_cosmo`](_autosummary/aw.html.md#aw.load_for_cosmo)(source_uri[, max_retries, strict])  | Load and prepare data specifically for cosmograph visualization.                                                                              |
+| [`extract_agent_spec`](_autosummary/aw.html.md#aw.extract_agent_spec)(agent[, name])                  | Extract a normalized AgentSpec from any aw agent.                                                                                             |
+| [`to_claude_skill`](_autosummary/aw.html.md#aw.to_claude_skill)(agent[, name, description, ...])   | Translate an aw agent to a Claude Code SKILL.md string.                                                                                       |
+| [`claude_skill_from_spec`](_autosummary/aw.html.md#aw.claude_skill_from_spec)(spec, \*[, name, ...])      | Render a Claude Code SKILL.md string from an [`AgentSpec`](_autosummary/aw.html.md#aw.AgentSpec).                                      |
+| [`write_skill_directory`](_autosummary/aw.html.md#aw.write_skill_directory)(agent, output_dir[, ...])    | Write a complete Claude Code skill directory.                                                                                                 |
+| [`workflow_to_skills`](_autosummary/aw.html.md#aw.workflow_to_skills)(workflow, output_dir)           | Translate an AgenticWorkflow into a set of Claude Code skills.                                                                                |
+| [`to_crewai_yaml`](_autosummary/aw.html.md#aw.to_crewai_yaml)(agent[, name, role, goal, ...])     | Translate an aw agent to a CrewAI agent YAML config dict.                                                                                     |
+| [`crewai_yaml_from_spec`](_autosummary/aw.html.md#aw.crewai_yaml_from_spec)(spec, \*[, name, role, ...]) | Render a CrewAI agent config dict from an [`AgentSpec`](_autosummary/aw.html.md#aw.AgentSpec).                                         |
+| [`workflow_to_crewai_yaml`](_autosummary/aw.html.md#aw.workflow_to_crewai_yaml)(workflow)                  | Translate an AgenticWorkflow to CrewAI agents.yaml + tasks.yaml.                                                                              |
+| [`to_openai_tools`](_autosummary/aw.html.md#aw.to_openai_tools)(agent)                             | Translate an aw agent's tools to OpenAI function-calling tool schemas.                                                                        |
+| [`openai_tools_from_spec`](_autosummary/aw.html.md#aw.openai_tools_from_spec)(spec)                       | Render OpenAI function-calling tool schemas from an [`AgentSpec`](_autosummary/aw.html.md#aw.AgentSpec).                               |
+| [`to_openai_assistant`](_autosummary/aw.html.md#aw.to_openai_assistant)(agent[, name, model])          | Translate an aw agent to an OpenAI Assistant-style config dict.                                                                               |
+| [`openai_assistant_from_spec`](_autosummary/aw.html.md#aw.openai_assistant_from_spec)(spec, \*[, name, ...])  | Render an OpenAI Assistant-style config dict from an [`AgentSpec`](_autosummary/aw.html.md#aw.AgentSpec).                              |
 
 ### Classes
 
@@ -1711,7 +1711,9 @@ Factory function to create a loading agent.
 
 ### aw.create_oa_chat()
 
-Create a chat function using the oa package.
+Create a chat function through [`aw.llm.default_chat()`](_autosummary/aw.llm.html.md#aw.llm.default_chat) (`aix`, else `oa`).
+
+The name is kept for compatibility; generation is routed through `aix`.
 
 * **Return type:**
   [`Callable`](https://docs.python.org/3/library/typing.html#typing.Callable)[[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str)], [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)]
@@ -2302,6 +2304,7 @@ output_dir/
 | [`cosmo`](_autosummary/aw.cosmo.html.md#module-aw.cosmo)                 | Cosmograph-specific validator tool.                                                                                                                                      |
 | [`dispatch`](_autosummary/aw.dispatch.html.md#module-aw.dispatch)           | Cheap-first dispatch to a skill: calibrated retrieval first, an LLM adjudicator only on ambiguity.                                                                       |
 | [`func_calling`](_autosummary/aw.func_calling.html.md#module-aw.func_calling)   | This module provides robust templates for creating (python) code-generating functions that can translate natural language task descriptions into executable Python code. |
+| [`llm`](_autosummary/aw.llm.html.md#module-aw.llm)                     | The one place aw reaches a language model: `aix` first, `oa` only as a fallback.                                                                                         |
 | [`loading`](_autosummary/aw.loading.html.md#module-aw.loading)             | Loading agent for converting data sources to pandas DataFrames.                                                                                                          |
 | [`orchestration`](_autosummary/aw.orchestration.html.md#module-aw.orchestration) | Orchestration and workflow management for agentic steps.                                                                                                                 |
 | [`preparing`](_autosummary/aw.preparing.html.md#module-aw.preparing)         | Preparation agent for transforming data to meet target requirements.                                                                                                     |
@@ -2311,6 +2314,46 @@ output_dir/
 | [`translators`](_autosummary/aw.translators.html.md#module-aw.translators)     | Translators from aw agent specifications to other agent formats.                                                                                                         |
 | [`util`](_autosummary/aw.util.html.md#module-aw.util)                   | Utility tools and helper functions for agents.                                                                                                                           |
 | [`validation`](_autosummary/aw.validation.html.md#module-aw.validation)       | Validation system supporting three flavors: schema, info-dict, and functional.                                                                                           |
+
+
+# _autosummary/aw.llm.html.md
+
+# aw.llm
+
+The one place aw reaches a language model: `aix` first, `oa` only as a fallback.
+
+Generation is routed through `aix` (the fleet’s LLM facade). `oa` stays an optional
+extra (the `llm` extra) and is used only when `aix` cannot be imported, so an
+install that has only `oa` keeps working.
+
+```pycon
+>>> callable(default_chat())
+True
+```
+
+### Functions
+
+| [`default_chat`](_autosummary/aw.llm.html.md#aw.llm.default_chat)()                | `chat(prompt, **kwargs) -> str`: `aix.chat`, else `oa.chat`.                                         |
+|--------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| [`default_json_function_maker`](_autosummary/aw.llm.html.md#aw.llm.default_json_function_maker)() | `maker(template, *, json_schema) -> function`: `aix.prompt_to_json`, else `oa.prompt_json_function`. |
+
+### aw.llm.default_chat()
+
+`chat(prompt, **kwargs) -> str`: `aix.chat`, else `oa.chat`.
+
+Raises `ImportError` when neither is installed.
+
+* **Return type:**
+  [`Callable`](https://docs.python.org/3/library/typing.html#typing.Callable)[[`...`](https://docs.python.org/3/builtins/constants.html#Ellipsis), [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)]
+
+### aw.llm.default_json_function_maker()
+
+`maker(template, *, json_schema) -> function`: `aix.prompt_to_json`, else `oa.prompt_json_function`.
+
+Raises `ImportError` when neither is installed.
+
+* **Return type:**
+  [`Callable`](https://docs.python.org/3/library/typing.html#typing.Callable)[[`...`](https://docs.python.org/3/builtins/constants.html#Ellipsis), [`Callable`](https://docs.python.org/3/library/typing.html#typing.Callable)[[`...`](https://docs.python.org/3/builtins/constants.html#Ellipsis), [`Any`](https://docs.python.org/3/library/typing.html#typing.Any)]]
 
 
 # _autosummary/aw.loading.html.md
@@ -2704,17 +2747,14 @@ Create a code generation function from a template and schema.
 * **Parameters:**
   * **template** ([`str`](https://docs.python.org/3/builtins/stdtypes.html#str)) – The prompt template for code generation
   * **code_schema** ([`dict`](https://docs.python.org/3/builtins/stdtypes.html#dict)) – JSON schema defining the output format
-  * **prompt_json_function_maker** – Factory function (defaults to oa.prompt_json_function)
+  * **prompt_json_function_maker** – Factory function (defaults to aix.prompt_to_json via aw.llm)
 * **Returns:**
   A function that generates code from task descriptions
 
 ### Example
 
 ```pycon
->>> from oa import prompt_json_function
->>> write_code = make_code_generator(
-...     prompt_json_function_maker=prompt_json_function
-... )
+>>> write_code = make_code_generator()
 >>> result = write_code(
 ...     task='Add {a} and {b}',
 ...     output_schema='{"type": "object", "properties": {"sum": {"type": "number"}}}',
@@ -3572,15 +3612,15 @@ Includes file sampling, LLM facades, and other common utilities.
 
 ### Functions
 
-| [`claude_desktop_config`](_autosummary/aw.util.html.md#aw.util.claude_desktop_config)([key_path, config_dir])   | Get a FileStore interface to Claude Desktop's configuration.      |
-|--------------------------------------------------------------------------------------------------|-------------------------------------------------------------------|
-| [`compute_dataframe_info`](_autosummary/aw.util.html.md#aw.util.compute_dataframe_info)(df)                      | Compute comprehensive info about a DataFrame.                     |
-| [`create_oa_chat`](_autosummary/aw.util.html.md#aw.util.create_oa_chat)()                                | Create a chat function using the oa package.                      |
-| [`create_openai_chat`](_autosummary/aw.util.html.md#aw.util.create_openai_chat)([model])                     | Create a text-to-text chat function using OpenAI API.             |
-| [`default_llm_factory`](_autosummary/aw.util.html.md#aw.util.default_llm_factory)([model])                    | Factory to create LLM function from various specifications.       |
-| [`get_numeric_columns`](_autosummary/aw.util.html.md#aw.util.get_numeric_columns)(df[, exclude_nulls])        | Get numeric columns from DataFrame.                               |
-| [`infer_loader_from_extension`](_autosummary/aw.util.html.md#aw.util.infer_loader_from_extension)(extension)          | Infer pandas loader function from file extension.                 |
-| [`infer_loader_params`](_autosummary/aw.util.html.md#aw.util.infer_loader_params)(extension[, sample_text])   | Infer parameters for pandas loader based on file characteristics. |
+| [`claude_desktop_config`](_autosummary/aw.util.html.md#aw.util.claude_desktop_config)([key_path, config_dir])   | Get a FileStore interface to Claude Desktop's configuration.                                                                                  |
+|--------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| [`compute_dataframe_info`](_autosummary/aw.util.html.md#aw.util.compute_dataframe_info)(df)                      | Compute comprehensive info about a DataFrame.                                                                                                 |
+| [`create_oa_chat`](_autosummary/aw.util.html.md#aw.util.create_oa_chat)()                                | Create a chat function through [`aw.llm.default_chat()`](_autosummary/aw.llm.html.md#aw.llm.default_chat) (`aix`, else `oa`). |
+| [`create_openai_chat`](_autosummary/aw.util.html.md#aw.util.create_openai_chat)([model])                     | Create a text-to-text chat function using OpenAI API.                                                                                         |
+| [`default_llm_factory`](_autosummary/aw.util.html.md#aw.util.default_llm_factory)([model])                    | Factory to create LLM function from various specifications.                                                                                   |
+| [`get_numeric_columns`](_autosummary/aw.util.html.md#aw.util.get_numeric_columns)(df[, exclude_nulls])        | Get numeric columns from DataFrame.                                                                                                           |
+| [`infer_loader_from_extension`](_autosummary/aw.util.html.md#aw.util.infer_loader_from_extension)(extension)          | Infer pandas loader function from file extension.                                                                                             |
+| [`infer_loader_params`](_autosummary/aw.util.html.md#aw.util.infer_loader_params)(extension[, sample_text])   | Infer parameters for pandas loader based on file characteristics.                                                                             |
 
 ### Classes
 
@@ -3662,7 +3702,9 @@ Compute comprehensive info about a DataFrame.
 
 ### aw.util.create_oa_chat()
 
-Create a chat function using the oa package.
+Create a chat function through [`aw.llm.default_chat()`](_autosummary/aw.llm.html.md#aw.llm.default_chat) (`aix`, else `oa`).
+
+The name is kept for compatibility; generation is routed through `aix`.
 
 * **Return type:**
   [`Callable`](https://docs.python.org/3/library/typing.html#typing.Callable)[[[`str`](https://docs.python.org/3/builtins/stdtypes.html#str)], [`str`](https://docs.python.org/3/builtins/stdtypes.html#str)]
@@ -3947,7 +3989,7 @@ Create a validator from a schema (Pydantic, JSON Schema, etc.).
 
 # About this build
 
-This documentation was built on **2026-11-23 02:47 UTC** from commit <a href="https://github.com/addaix/aw/commit/e9956dbd3e6b02e78280b81e5a2f00d6b946b73f"><code>e9956db</code></a> on branch <code>main</code>, for **aw 0.1.10** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-11-23 07:03 UTC** from commit <a href="https://github.com/addaix/aw/commit/837353717c8925bcc2d7b7e1d7fde82dc2ce229a"><code>8373537</code></a> on branch <code>main</code>, for **aw 0.1.11** (from <code>pyproject.toml</code>).
 
 #### NOTE
 Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
@@ -3956,9 +3998,9 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 
 |                     |                                                                                                                                                  |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/addaix/aw/commit/e9956dbd3e6b02e78280b81e5a2f00d6b946b73f"><code>e9956dbd3e6b02e78280b81e5a2f00d6b946b73f</code></a> |
+| Commit              | <a href="https://github.com/addaix/aw/commit/837353717c8925bcc2d7b7e1d7fde82dc2ce229a"><code>837353717c8925bcc2d7b7e1d7fde82dc2ce229a</code></a> |
 | Branch              | <code>main</code>                                                                                                                                |
-| Tags at this commit | <code>0.1.10</code>                                                                                                                              |
+| Tags at this commit | <code>0.1.11</code>                                                                                                                              |
 | Working tree        | clean                                                                                                                                            |
 | Remote              | <code>https://github.com/addaix/aw</code>                                                                                                        |
 
@@ -3967,9 +4009,9 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 |              |                                                                                            |
 |--------------|--------------------------------------------------------------------------------------------|
 | Repository   | <code>addaix/aw</code>                                                                     |
-| Run          | <a href="https://github.com/addaix/aw/actions/runs/45101996535">45101996535</a>            |
+| Run          | <a href="https://github.com/addaix/aw/actions/runs/45128115937">45128115937</a>            |
 | Ref          | <code>refs/heads/main</code>                                                               |
-| Event commit | <code>9000f9fa4b08b09c83b2060e25cc5029d5de8a5b</code> (in the history of the built commit) |
+| Event commit | <code>efc2ec77cf941881386875f25a15f76c5c854a33</code> (in the history of the built commit) |
 
 ## Tools
 
@@ -3994,13 +4036,13 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/aw/0.1.10/">0.1.10</a>, the same as the documented version.
+Latest release: <a href="https://pypi.org/project/aw/0.1.11/">0.1.11</a>, the same as the documented version.
 
 ## Reproduce
 
 ```bash
 git clone https://github.com/addaix/aw && cd aw
-git checkout e9956dbd3e6b02e78280b81e5a2f00d6b946b73f
+git checkout 837353717c8925bcc2d7b7e1d7fde82dc2ce229a
 pip install "epythet==0.2.23"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
