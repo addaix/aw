@@ -268,16 +268,13 @@ def make_code_generator(
     Args:
         template: The prompt template for code generation
         code_schema: JSON schema defining the output format
-        prompt_json_function_maker: Factory function (defaults to oa.prompt_json_function)
+        prompt_json_function_maker: Factory function (defaults to aix.prompt_to_json via aw.llm)
 
     Returns:
         A function that generates code from task descriptions
 
     Example:
-        >>> from oa import prompt_json_function
-        >>> write_code = make_code_generator(
-        ...     prompt_json_function_maker=prompt_json_function
-        ... )
+        >>> write_code = make_code_generator()  # doctest: +SKIP
         >>> result = write_code(  # doctest: +SKIP
         ...     task='Add {a} and {b}',
         ...     output_schema='{"type": "object", "properties": {"sum": {"type": "number"}}}',
@@ -288,14 +285,13 @@ def make_code_generator(
         {'sum': 5}
     """
     if prompt_json_function_maker is None:
-        # Try to import from oa
-        try:
-            from oa import prompt_json_function
+        from aw.llm import default_json_function_maker
 
-            prompt_json_function_maker = prompt_json_function
+        try:
+            prompt_json_function_maker = default_json_function_maker()
         except ImportError:
             raise ValueError(
-                "Must provide prompt_json_function_maker or have 'oa' package installed"
+                "Must provide prompt_json_function_maker or have 'aix' (or 'oa') installed"
             )
 
     return prompt_json_function_maker(template, json_schema=code_schema)
@@ -369,7 +365,7 @@ def _demo():
     print("USAGE EXAMPLE:")
     print("=" * 70)
     print("""
-from oa import prompt_json_function
+from aix import prompt_to_json as prompt_json_function
 from code_generation_improved import CODE_WRITING_TEMPLATE, CODE_DEFINITION_SCHEMA
 
 # Create the code generator

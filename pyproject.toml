@@ -46,7 +46,7 @@ dependencies = [
     "pandas",
     "config2py",
     "pydantic",
-    "oa",
+    "aix",
 ]
 
 [project.urls]
