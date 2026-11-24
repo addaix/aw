@@ -5,19 +5,21 @@ orphan: true
 
 # About this build
 
-This documentation was built on **2026-11-23 23:16 UTC** from commit <a href="https://github.com/addaix/aw/commit/d547569f26662741719c1a49ba1266648578d336"><code>d547569</code></a> on branch <code>main</code>, for **aw 0.1.12** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-11-24 05:58 UTC** from commit <a href="https://github.com/addaix/aw/commit/3173f8e26d7dc67bb0a2300c3fa7368e6cc0147e"><code>3173f8e</code></a> on branch <code>main</code>, for **aw 0.1.13** (from <code>pyproject.toml</code>).
 
-:::{note}
-Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
+:::{warning}
+The documentation and the package may be misaligned:
+
+- The documented version (0.1.13) is ahead of the latest release on PyPI (0.1.12): these docs describe unreleased code.
 :::
 
 ## Source
 
 | | |
 |---|---|
-| Commit | <a href="https://github.com/addaix/aw/commit/d547569f26662741719c1a49ba1266648578d336"><code>d547569f26662741719c1a49ba1266648578d336</code></a> |
+| Commit | <a href="https://github.com/addaix/aw/commit/3173f8e26d7dc67bb0a2300c3fa7368e6cc0147e"><code>3173f8e26d7dc67bb0a2300c3fa7368e6cc0147e</code></a> |
 | Branch | <code>main</code> |
-| Tags at this commit | <code>0.1.12</code> |
+| Tags at this commit | <code>0.1.13</code> |
 | Working tree | clean |
 | Remote | <code>https://github.com/addaix/aw</code> |
 
@@ -26,9 +28,9 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 | | |
 |---|---|
 | Repository | <code>addaix/aw</code> |
-| Run | <a href="https://github.com/addaix/aw/actions/runs/45287007204">45287007204</a> |
+| Run | <a href="https://github.com/addaix/aw/actions/runs/45336721665">45336721665</a> |
 | Ref | <code>refs/heads/main</code> |
-| Event commit | <code>b3dcde60365209254f3f67eacd379d47190ebed0</code> (in the history of the built commit) |
+| Event commit | <code>5c7e4a375649767d1c908da09ff88fdce758ceff</code> (in the history of the built commit) |
 
 ## Tools
 
@@ -53,13 +55,13 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/aw/0.1.12/">0.1.12</a>, the same as the documented version.
+Latest release: <a href="https://pypi.org/project/aw/0.1.12/">0.1.12</a>, older than the documented version (0.1.13).
 
 ## Reproduce
 
 ```bash
 git clone https://github.com/addaix/aw && cd aw
-git checkout d547569f26662741719c1a49ba1266648578d336
+git checkout 3173f8e26d7dc67bb0a2300c3fa7368e6cc0147e
 pip install "epythet==0.2.25"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```

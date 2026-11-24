@@ -1,4 +1,4 @@
-> built 2026-11-23 23:16 UTC from d547569 (main) · aw 0.1.12. Details: build_info.json
+> built 2026-11-24 05:58 UTC from 3173f8e (main) · aw 0.1.13. Details: build_info.json
 
 # index.html.md
 
@@ -908,7 +908,7 @@ Extract a function from a string of Python code.
 {'sum': 5}
 ```
 
-### aw.func_calling.make_code_generator(template='\\nYou are a Python code generator. Your task is to create a complete, executable Python function.\\n\\n## TASK DESCRIPTION\\n{task}\\n\\n## OUTPUT SCHEMA\\nThe function should return a value that conforms to this JSON schema:\\n\`\`\`json\\n{output_schema}\\n\`\`\`\\n\\nIf output_schema is null or empty, the function can return any appropriate value.\\n\\n## REQUIREMENTS\\n\\n### Function Signature\\n- Function name: \`{name}\`\\n- Parameters: Extract from the task description (indicated by {{braces}})\\n- All parameters should have type hints where possible\\n- Use clear, descriptive parameter names\\n\\n### Code Quality\\n- Write ONLY the function definition (no imports in function body, no examples, no explanations)\\n- Include a minimal docstring (one line describing what it does)\\n- Use type hints for parameters and return value\\n- Handle edge cases appropriately (e.g., empty inputs, None values)\\n- Use built-in functions and standard library where possible\\n- Keep the code simple and readable\\n\\n### Output Format\\n- If returning a dict matching a schema, ensure all required fields are present\\n- If the schema specifies types, ensure they match (e.g., "number" → int or float)\\n- Return values directly without unnecessary wrapping\\n\\n### Code Style\\n- Follow PEP 8 conventions\\n- Use meaningful variable names\\n- Prefer comprehensions over loops where readable\\n- No print statements or side effects unless the task requires them\\n\\n## CRITICAL INSTRUCTIONS\\n- Respond with ONLY the function definition\\n- Do NOT include: imports, examples, explanations, markdown formatting, or test code\\n- Do NOT wrap the code in markdown code blocks\\n- The response must be valid Python that can be directly executed with \`exec()\`\\n\\n## EXAMPLE FORMAT (for reference only, do not include this in your response)\\n\`\`\`python\\ndef example_function(param1: int, param2: str) -> dict:\\n    """Brief description of what this does."""\\n    # function body\\n    return {{"result": param1}}\\n\`\`\`\\n\\nNOW GENERATE THE FUNCTION.\\n', code_schema={'name': 'generated_python_function', 'schema': {'properties': {'code': {'description': 'Complete Python function definition as a string', 'type': 'string'}}, 'required': ['code'], 'type': 'object'}}, prompt_json_function_maker=None)
+### aw.func_calling.make_code_generator(template='\\nYou are a Python code generator. Your task is to create a complete, executable Python function.\\n\\n## TASK DESCRIPTION\\n{task}\\n\\n## OUTPUT SCHEMA\\nThe function should return a value that conforms to this JSON schema:\\n\\n{output_schema}\\n\\nIf output_schema is null or empty, the function can return any appropriate value.\\n\\n## REQUIREMENTS\\n\\n### Function Signature\\n- Function name: \`{name}\`\\n- Parameters: Extract from the task description (indicated by {{braces}})\\n- All parameters should have type hints where possible\\n- Use clear, descriptive parameter names\\n\\n### Code Quality\\n- Write ONLY the function definition (no imports in function body, no examples, no explanations)\\n- Include a minimal docstring (one line describing what it does)\\n- Use type hints for parameters and return value\\n- Handle edge cases appropriately (e.g., empty inputs, None values)\\n- Use built-in functions and standard library where possible\\n- Keep the code simple and readable\\n\\n### Output Format\\n- If returning a dict matching a schema, ensure all required fields are present\\n- If the schema specifies types, ensure they match (e.g., "number" → int or float)\\n- Return values directly without unnecessary wrapping\\n\\n### Code Style\\n- Follow PEP 8 conventions\\n- Use meaningful variable names\\n- Prefer comprehensions over loops where readable\\n- No print statements or side effects unless the task requires them\\n\\n## CRITICAL INSTRUCTIONS\\n- Respond with ONLY the function definition\\n- Do NOT include: imports, examples, explanations, markdown formatting, or test code\\n- Do NOT wrap the code in markdown code blocks\\n- The response must be valid Python that can be directly executed with \`exec()\`\\n\\n## EXAMPLE FORMAT (for reference only, do not include this in your response)\\n\`\`\`python\\ndef example_function(param1: int, param2: str) -> dict:\\n    """Brief description of what this does."""\\n    # function body\\n    return {{"result": param1}}\\n\`\`\`\\n\\nNOW GENERATE THE FUNCTION.\\n', code_schema={'name': 'generated_python_function', 'schema': {'properties': {'code': {'description': 'Complete Python function definition as a string', 'type': 'string'}}, 'required': ['code'], 'type': 'object'}}, prompt_json_function_maker=None)
 
 Create a code generation function from a template and schema.
 
@@ -2740,7 +2740,7 @@ Safely extract a function from a code string.
 5
 ```
 
-### aw.py_gen.make_code_generator(template='\\nYou are a Python code generator. Your task is to create a complete, executable Python function.\\n\\n## TASK DESCRIPTION\\n{task}\\n\\n## OUTPUT SCHEMA\\nThe function should return a value that conforms to this JSON schema:\\n\`\`\`json\\n{output_schema}\\n\`\`\`\\n\\nIf output_schema is null or empty, the function can return any appropriate value.\\n\\n## REQUIREMENTS\\n\\n### Function Signature\\n- Function name: \`{name}\`\\n- Parameters: Extract from the task description (indicated by {{braces}})\\n- All parameters should have type hints where possible\\n- Use clear, descriptive parameter names\\n\\n### Code Quality\\n- Write ONLY the function definition (no imports in function body, no examples, no explanations)\\n- Include a minimal docstring (one line describing what it does)\\n- Use type hints for parameters and return value\\n- Handle edge cases appropriately (e.g., empty inputs, None values)\\n- Use built-in functions and standard library where possible\\n- Keep the code simple and readable\\n\\n### Output Format\\n- If returning a dict matching a schema, ensure all required fields are present\\n- If the schema specifies types, ensure they match (e.g., "number" → int or float)\\n- Return values directly without unnecessary wrapping\\n\\n### Code Style\\n- Follow PEP 8 conventions\\n- Use meaningful variable names\\n- Prefer comprehensions over loops where readable\\n- No print statements or side effects unless the task requires them\\n\\n## CRITICAL INSTRUCTIONS\\n- Respond with ONLY the function definition\\n- Do NOT include: imports, examples, explanations, markdown formatting, or test code\\n- Do NOT wrap the code in markdown code blocks\\n- The response must be valid Python that can be directly executed with \`exec()\`\\n\\n## EXAMPLE FORMAT (for reference only, do not include this in your response)\\n\`\`\`python\\ndef example_function(param1: int, param2: str) -> dict:\\n    """Brief description of what this does."""\\n    # function body\\n    return {{"result": param1}}\\n\`\`\`\\n\\nNOW GENERATE THE FUNCTION.\\n', code_schema={'name': 'generated_python_function', 'schema': {'properties': {'code': {'description': 'Complete Python function definition as a string', 'type': 'string'}}, 'required': ['code'], 'type': 'object'}}, prompt_json_function_maker=None)
+### aw.py_gen.make_code_generator(template='\\nYou are a Python code generator. Your task is to create a complete, executable Python function.\\n\\n## TASK DESCRIPTION\\n{task}\\n\\n## OUTPUT SCHEMA\\nThe function should return a value that conforms to this JSON schema:\\n\\n{output_schema}\\n\\nIf output_schema is null or empty, the function can return any appropriate value.\\n\\n## REQUIREMENTS\\n\\n### Function Signature\\n- Function name: \`{name}\`\\n- Parameters: Extract from the task description (indicated by {{braces}})\\n- All parameters should have type hints where possible\\n- Use clear, descriptive parameter names\\n\\n### Code Quality\\n- Write ONLY the function definition (no imports in function body, no examples, no explanations)\\n- Include a minimal docstring (one line describing what it does)\\n- Use type hints for parameters and return value\\n- Handle edge cases appropriately (e.g., empty inputs, None values)\\n- Use built-in functions and standard library where possible\\n- Keep the code simple and readable\\n\\n### Output Format\\n- If returning a dict matching a schema, ensure all required fields are present\\n- If the schema specifies types, ensure they match (e.g., "number" → int or float)\\n- Return values directly without unnecessary wrapping\\n\\n### Code Style\\n- Follow PEP 8 conventions\\n- Use meaningful variable names\\n- Prefer comprehensions over loops where readable\\n- No print statements or side effects unless the task requires them\\n\\n## CRITICAL INSTRUCTIONS\\n- Respond with ONLY the function definition\\n- Do NOT include: imports, examples, explanations, markdown formatting, or test code\\n- Do NOT wrap the code in markdown code blocks\\n- The response must be valid Python that can be directly executed with \`exec()\`\\n\\n## EXAMPLE FORMAT (for reference only, do not include this in your response)\\n\`\`\`python\\ndef example_function(param1: int, param2: str) -> dict:\\n    """Brief description of what this does."""\\n    # function body\\n    return {{"result": param1}}\\n\`\`\`\\n\\nNOW GENERATE THE FUNCTION.\\n', code_schema={'name': 'generated_python_function', 'schema': {'properties': {'code': {'description': 'Complete Python function definition as a string', 'type': 'string'}}, 'required': ['code'], 'type': 'object'}}, prompt_json_function_maker=None)
 
 Create a code generation function from a template and schema.
 
@@ -3989,18 +3989,20 @@ Create a validator from a schema (Pydantic, JSON Schema, etc.).
 
 # About this build
 
-This documentation was built on **2026-11-23 23:16 UTC** from commit <a href="https://github.com/addaix/aw/commit/d547569f26662741719c1a49ba1266648578d336"><code>d547569</code></a> on branch <code>main</code>, for **aw 0.1.12** (from <code>pyproject.toml</code>).
+This documentation was built on **2026-11-24 05:58 UTC** from commit <a href="https://github.com/addaix/aw/commit/3173f8e26d7dc67bb0a2300c3fa7368e6cc0147e"><code>3173f8e</code></a> on branch <code>main</code>, for **aw 0.1.13** (from <code>pyproject.toml</code>).
 
-#### NOTE
-Nothing suggests a mismatch: the tree was clean at the commit above, and the documented version is the one on PyPI.
+#### WARNING
+The documentation and the package may be misaligned:
+
+- The documented version (0.1.13) is ahead of the latest release on PyPI (0.1.12): these docs describe unreleased code.
 
 ## Source
 
 |                     |                                                                                                                                                  |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| Commit              | <a href="https://github.com/addaix/aw/commit/d547569f26662741719c1a49ba1266648578d336"><code>d547569f26662741719c1a49ba1266648578d336</code></a> |
+| Commit              | <a href="https://github.com/addaix/aw/commit/3173f8e26d7dc67bb0a2300c3fa7368e6cc0147e"><code>3173f8e26d7dc67bb0a2300c3fa7368e6cc0147e</code></a> |
 | Branch              | <code>main</code>                                                                                                                                |
-| Tags at this commit | <code>0.1.12</code>                                                                                                                              |
+| Tags at this commit | <code>0.1.13</code>                                                                                                                              |
 | Working tree        | clean                                                                                                                                            |
 | Remote              | <code>https://github.com/addaix/aw</code>                                                                                                        |
 
@@ -4009,9 +4011,9 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 |              |                                                                                            |
 |--------------|--------------------------------------------------------------------------------------------|
 | Repository   | <code>addaix/aw</code>                                                                     |
-| Run          | <a href="https://github.com/addaix/aw/actions/runs/45287007204">45287007204</a>            |
+| Run          | <a href="https://github.com/addaix/aw/actions/runs/45336721665">45336721665</a>            |
 | Ref          | <code>refs/heads/main</code>                                                               |
-| Event commit | <code>b3dcde60365209254f3f67eacd379d47190ebed0</code> (in the history of the built commit) |
+| Event commit | <code>5c7e4a375649767d1c908da09ff88fdce758ceff</code> (in the history of the built commit) |
 
 ## Tools
 
@@ -4036,13 +4038,13 @@ Nothing suggests a mismatch: the tree was clean at the commit above, and the doc
 
 ## Package on PyPI
 
-Latest release: <a href="https://pypi.org/project/aw/0.1.12/">0.1.12</a>, the same as the documented version.
+Latest release: <a href="https://pypi.org/project/aw/0.1.12/">0.1.12</a>, older than the documented version (0.1.13).
 
 ## Reproduce
 
 ```bash
 git clone https://github.com/addaix/aw && cd aw
-git checkout d547569f26662741719c1a49ba1266648578d336
+git checkout 3173f8e26d7dc67bb0a2300c3fa7368e6cc0147e
 pip install "epythet==0.2.25"
 epythet quickstart . --ignore tests/ scrap/ examples/
 ```
