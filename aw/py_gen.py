@@ -24,9 +24,8 @@ You are a Python code generator. Your task is to create a complete, executable P
 
 ## OUTPUT SCHEMA
 The function should return a value that conforms to this JSON schema:
-```json
+
 {output_schema}
-```
 
 If output_schema is null or empty, the function can return any appropriate value.
 
@@ -91,9 +90,9 @@ You will generate a single Python function based on specifications below.
 - **Function Name**: `{name}`
 - **Input Parameters**: Identified by `{{variable}}` patterns in task description
 - **Output Format**: Must conform to this JSON schema:
-```json
+
 {output_schema}
-```
+
 (If schema is null/empty, return type can be determined from task context)
 
 ## 3. IMPLEMENTATION GUIDE
